@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.table-commande{
+    margin: 250px 270px; 
+    max-width: 700px;
+    position: fixed;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    border-collapse: collapse;
+}
+
+.table_root{
+    vertical-align: middle;
+    background: #fff;
+   
+
+}
+
+.header_table{
+    background-color: #fff;
+}
+
+.row_head{
+    border-bottom: 1.6px solid #555555;
+}
+
+.cell_head{
+    font-weight: bold;
+    background: #fff;
+    color: #000;
+    font-size: 12px;
+    font-family: "Inter", sans-serif;
+}
+
+.body{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background: #fff;
+    
+}
+
+.row_body{
+    border-bottom: 1.6px solid #ccc;
+}
+
+.cell_body{
+    position: relative;
+    background: #fff;
+    display: flex;
+}
+
+
+.cell_body button{
+    left: -50px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    top: 5px;
+}
+
+.cell_body a:nth-child(1){
+    background: #000;
+}
+.livrer{
+    background: #18587A;
+    width: 100px;
+    height: auto;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    padding: 5px;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    outline: none;
+}
+
+.cell_body  a{
+    margin-left: 110px;
+    margin-top: -40px;
+    border: none;
+    justify-content: flex-end;
+    display: flex;
+    position: fixed;
+    cursor: pointer;
+    padding: 5px;
+    background: none;
+}
+
+.cell_body .delete-icon{
+    font-size: 40px;
+    color: #F80110;
+    background: none;
+
+}
+

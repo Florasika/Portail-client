@@ -1,0 +1,548 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.search{
+    background: #d9d9d9;
+    border-radius: 10px;
+    display: flex;
+    padding: 10px;
+    width: 350px;
+    position: fixed;
+    margin: 80px 270px;
+}
+
+.search input{
+    padding: 5px;
+    width: 250px;
+    border: none;
+    justify-content: center;
+    color: #555555;
+    position: fixed;
+    margin-left: 40px;
+    background: none;
+}
+
+.search .recherche{
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    background: none;
+}
+
+.search .search_icon{
+    background: none;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    color: #555555;
+}
+
+.search h1{
+    top: 300px;
+    margin-left: -10px;
+    position: fixed;
+    background: none;
+}
+
+/* -----------------------terminé&encours-------------------------------*/
+.status-container {
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    margin:  200px 500px;
+    width: 300px; 
+    padding: 10px;
+    border: none;
+    border-radius: none;
+    background-color: none;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+}
+
+.status-item .status-circle {
+    display: inline-block;
+    width: 20px;  
+    height: 20px; 
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.green {
+    background-color: #00AF12;
+}
+
+.red {
+    background-color: #F80110;
+}
+
+.status-text {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #000;
+}
+
+/*----------------commande admin -----------------*/
+.admin-container{
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    margin:  110px 500px;
+    width: 300px; 
+    padding: 10px;
+    border: none;
+    border-radius: none;
+    background-color: none;
+}
+
+.admin-container h1{
+    top: 200px;
+    margin-left: -520px;
+    position: fixed;
+    background: none;
+}
+
+.admin-status{
+    display: flex;
+    align-items: center;
+}
+
+.circle {
+    display: inline-block;
+    width: 20px;  
+    height: 20px; 
+    border-radius: 50%;
+    margin-left: -20px;
+}
+
+.pink{
+    background-color: #FCA7A7;
+}
+.coffee{
+    background-color: #543F3C;
+}
+
+.blue{
+    background-color: #18587A;
+}
+.admin-status .text {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #000;
+    margin-left: -20px;
+}
+
+
+
+
+/*----------------------User-------*/
+
+.user-container h1{
+    top: 200px;
+    margin-left: -30px;
+    position: fixed;
+    background: none;
+}
+.user-container .search-user{
+    background: #99406C;
+    border: none;
+    border-radius: 5px;
+    margin: -5px 350px;
+    width: 200px;
+    padding: 10px;
+    position: fixed;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.user-container .search-user1{
+    background: #99406C;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: -5px 580px;
+    width: 200px;
+    padding: 10px;
+    position: fixed;
+    color: #fff;
+    font-size: 15px;
+}
+
+/*------------------Buttons------------------*/
+.search .search-button{
+    background: #99406C;
+    border: none;
+    border-radius: 5px;
+    margin: -5px 350px;
+    width: 200px;
+    padding: 10px;
+    position: fixed;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.search .search-button1{
+    background: #99406C;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: -5px 580px;
+    width: 200px;
+    padding: 10px;
+    position: fixed;
+    color: #fff;
+    font-size: 15px;
+}
+
+
+/* ------------------------------Style de base pour le conteneur du select ------------------------*/
+.custom-select {
+    position: fixed;
+    display: flex;
+    width: 100px;
+    top: 280px;
+    margin-left: 1000px; 
+}
+
+.custom-select select {
+    background-color: none; 
+    color: #000; 
+    padding: 14px 10px; 
+    font-size: 16px; 
+    border: 1px solid #000; 
+    border-radius: 4px; 
+    width: 100%; 
+    cursor: pointer; 
+    appearance: none; 
+}
+
+.custom-select::after {
+    content: '▼'; /* Symbole de flèche */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; 
+    color: #000; 
+}
+
+/*-----------------COMMANDE---------------------------------*/
+.commande_container{
+    margin: 0;
+    padding: 0;
+    background: none;
+    
+}
+
+.commande_container h1{
+    top: 200px;
+    margin-left: -30px;
+    position: fixed;
+    background: none;
+}
+
+.commande_container button{
+    background: #99406C;
+    border: none;
+    border-radius: 5px;
+    margin: 110px 480px;
+    width: 160px;
+    height: 35px;
+    padding: 5px;
+    position: fixed;
+    cursor: pointer;
+    justify-content: center;
+}
+.reload{
+    padding: 5px;
+    color: #fff;
+    font-size: 20px;
+
+}
+
+.reload h2{
+    font-size: 15px;
+    width: 90px;
+    font-family: "Inter", sans-serif;
+    color: #fff;
+    background: none;
+    margin-top: -35px;
+    margin-left: 40px;
+    padding: 5px;
+}
+.reload_icon{
+    background: none;
+    width: 30px;
+    padding: 5px;
+    margin-left: -120px;
+    top: -5px;
+    height: 30px;
+    font-size: 15px;
+}
+
+/*--------------------Notifications-----------------*/
+.notif-list{
+    width: 400px;
+    height: 82vh;
+    border-radius: 15px;
+    margin-left: 750px;
+    margin-top: 20px;
+    position: fixed;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.notif-list h1{
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    margin: -220px 10px;
+}
+
+.notif-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background: #fff;
+}
+
+.notif-left {
+    margin-right: 10px;
+    position: relative;
+    background: none;
+}
+  
+.notif-icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #F80110;
+    margin: 25px 0;
+    justify-content: center;
+}
+.notif-content {
+    flex: 1;
+    background: none;
+}
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    margin-bottom: 5px;
+}
+
+.notif-title {
+    font-weight: bold;
+    font-size: 18px;
+    background: none;
+}
+  
+.time {
+    font-size: 12px;
+    color: #888;
+    background: none;
+}
+
+.notif-body {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #8E8E8E;
+    background: none;
+}
+  
+.notif-footer {
+    font-size: 12px;
+    background: none;
+}
+
+.notif-link {
+    color: #F80110;
+    text-decoration: none;
+    font-weight: 200;
+    background: none;
+}
+
+.notif-options {
+    font-size: 15px;
+    color: #000;
+    cursor: pointer;
+    margin-top: 30px;
+    background: none;
+}
+
+.notif-options .option{
+    background: none;
+}
+
+/* ----------------------------Popup.css --------------------------------------*/
+
+.popup {
+    background: #fff;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    opacity: 90%;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2),
+                0 0 5px rgba(0, 0, 0, 0.2),
+                0 0 50px rgb(0, 0, 0, 0.2);
+    width: 600px;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .popup h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    background: #fff;
+  }
+
+  .popup form{
+    background: #fff;
+  }
+  
+  .form-row {
+    display: flex;
+    background: #fff;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    gap: 15px; /* Ajout d'un espacement entre les form-group */
+}
+  
+  .form-group {
+    flex: 1; /* Chaque form-group prend une part égale de l'espace disponible */
+    display: flex;
+    flex-direction: column;
+    background: none;
+}
+  
+  .form-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    background: #fff;
+}
+
+.form-group .num{
+    display: flex;
+    width: 220px;
+    flex-direction: column;
+    background: #fff;
+  }
+
+.form-group input {
+    background: #fff;
+    width: 250px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  
+  .form-group.small {
+    width: 80%;
+    background: #fff;
+  }
+  .form-group.full{
+    width: 250px;
+  }
+
+  .input-with-icon {
+    position: relative;
+    width: 250px;
+    background: none;
+    
+  }
+
+  .input-with-icon input {
+    width: 100%;
+    padding-right: 30px; /* Pour laisser de l'espace pour l'icône */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  
+  .input-with-icon .icon {
+    position: absolute;
+    right: 10px;
+    background: #fff;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000; /* Couleur de l'icône */
+  }
+
+  .icon-link {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .submit-btn {
+    background-color: #FC624D;
+    color: #fff;
+    margin-left: auto;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    top: -5px;
+    width: 160px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    transition: 0.3s;
+  }
+
+.delete-btn{
+    background-color: #FC624D;
+    color: #fff;
+    margin-left: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-top: -30px;
+    width: 160px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    transition: 0.3s;
+}
+  
+  
+/*-----------facture*/
+.facture-container{
+    margin: 0;
+    padding: 0;
+    background: none;
+    
+}
+
+.facture-container h1{
+    top: 180px;
+    margin-left: -30px;
+    position: fixed;
+    background: none;
+}
+

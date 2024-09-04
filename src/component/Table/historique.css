@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.historique-container {
+    max-width: 400px;
+    height: 82vh;
+    margin: 20px;
+    position: fixed;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 750px;
+    margin-top: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background: none;
+}
+
+.header h2{
+    font-size: 22px;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    background: none;
+}
+.header a{
+    background: none;
+}
+.header .delete-icon{
+    width: 25px;
+    height: 25px;
+    color: #FF0000;
+    font-size: 20px;
+    background: none;
+}
+
+.historique-root {
+    width: 100%;
+    background: #fff;
+}
+
+.historique-header {
+    background-color: #fff;
+}
+
+.historique-row-head {
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #fff;
+    border-bottom: 1.6px solid #8E8E8E;
+}
+
+.historique-cell-head {
+    text-align: left;
+    background: #fff;
+}
+
+.historique-body{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background: #fff;
+}
+
+.historique-row-body{
+    border-bottom: 1px solid #8E8E8E;
+}
+.historique-row-body:nth-of-type(odd) {
+    background-color: #fff;
+}
+
+.cell-body {
+    padding: 10px;
+    text-align: left;
+    display: flex;
+}
+
+

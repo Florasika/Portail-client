@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.admin-commande{
+    margin: 250px 270px; 
+    max-width: 1180px;
+    position: fixed;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    border-collapse: collapse;
+}
+
+.table-root{
+    vertical-align: middle;
+    background: #fff;
+}
+
+.header_table{
+    background-color: #fff;
+}
+
+.row_head{
+    border-bottom: 1.6px solid #555555;
+}
+
+.cell-head{
+    font-weight: bold;
+    background: #fff;
+    color: #000;
+    font-size: 12px;
+    font-family: "Inter", sans-serif;
+}
+
+.body{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background: #fff;
+}
+
+.row_body{
+    border-bottom: 1.6px solid #ccc;
+}
+
+.cell_body1{
+    position: relative;
+    background: #fff;
+    display: flex;
+    align-items: center;
+     /* Assure que les éléments sont répartis entre les deux extrémités */
+}
+
+
+.statu-icon.pink {
+    display: inline-block;
+    width: 15px;
+    left: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #FCA7A7;
+}
+
+.statu-icon.coffee {
+    display: inline-block;
+    width: 15px;
+    left: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #543F3C;
+}
+
+.statu-icon.blue {
+    display: inline-block;
+    width: 15px;
+    left: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #18587A;
+}
+
+
+.cell_body1 button{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-left: 80px; 
+    margin-top: -20px;/* Ajuste l'espace entre le bouton et l'icône */
+}
+
+.details{
+    background: #FCA7A7;
+    width: 100px;
+    height: auto;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    top: 5px;
+    padding: 5px;
+    position: fixed;
+    left: 30px;
+    color: #000;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    outline: none;
+}
+
+.cell_body1 a{
+    display: flex;
+    justify-content: flex-end; /* Place l'icône à droite */
+    align-items: center;
+    border: none;
+    padding: 5px;
+    position: fixed; 
+    margin-top: -30px;
+    background: none;
+    cursor: pointer;
+    margin-left: 320px; /* Ajuste l'espace entre le bouton et l'icône */
+}
+
+.cell_body1 .delete-icon{
+    font-size: 20px;
+    color: #F80110;
+    background: none;
+}
+/*-----------details---------*/
+
+.details-container {
+    padding: 10px;
+    max-width: 1000px;
+    width: 100%;
+    height: 500px;
+    position: fixed;
+    margin: 80px 0 0 260px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    
+}
+
+.details-container h2{
+    justify-content: center;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    background: none;
+    margin-bottom: 10px;
+}
+
+.details-container .statut{
+   font-size: 20px;
+   background: none;
+}
+
+.details-container .statut strong{
+    background: none;
+}
+
+.details-row {
+    display: flex;
+    background: none;
+    gap: 450px; 
+    margin-bottom: 50px; /* Espacement entre les lignes */
+}
+
+.details-row p{
+    margin: 0;
+    font-size: 20px;
+    background: none;
+}
+
+.details-row strong {
+    margin: 0;
+    font-size: 20px;
+    background: none;
+}
+
+.close-details {
+    margin-top: 200px;
+    padding: 10px 20px;
+    position: fixed;
+    align-items: center;
+    margin-left: 400px;
+    font-size: 16px;
+    color: white;
+    background-color: #FC624D;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/*----------------Dialog---------------*/
+/* AdminCommande.css */
+
+.custom-dialog {
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    max-width: 400px;
+    background: #fff;
+    width: 100%;
+    opacity: 80%;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2),
+                0 0 5px rgba(0, 0, 0, 0.2),
+                0 0 10px rgb(0, 0, 0, 0.2);
+    margin: 0 auto;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.custom-dialog-title {
+    font-size: 18px;
+    color: #000;
+    background-color: #fff;
+    padding: 5px;
+    border-bottom: 10px;
+    font-weight: 500;
+    border-radius: none;
+    text-align: center;}
+
+.custom-dialog-content {
+    padding: 20px;
+    font-size: 1rem;
+    color: #000;
+    background: none;
+}
+
+.custom-dialog-content form{
+    background: #fff;
+}
+
+.custom-dialog-actions {
+    padding: 10px 0 0;
+    display: flex;
+    justify-content: flex-end;
+    background: #fff;
+}
+
+.custom-dialog-button-confirm {
+    background-color: #99406C;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+
+.custom-dialog-content .form-row {
+    display: flex;
+   background: #fff;
+    
+}
+
+.custom-dialog-content .form-group {
+    display: flex;
+    background: #fff;
+}
+
+.custom-dialog-content .form-group label {
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: normal;
+    color: #000;
+}
+
+.custom-dialog-content .form-group input {
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #000;
+    background: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

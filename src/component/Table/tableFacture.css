@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.invoice-container {
+    max-width: 700px;
+    margin: 230px 270px;
+    border-radius: 8px;
+    background: #fff;
+    border-collapse: collapse;
+    position: fixed;
+}
+  
+.invoice-table-root {
+    vertical-align: middle;
+    border-collapse: collapse;
+    background: #fff;
+}
+  
+.invoice-header {
+    background-color: #fff;
+}
+  
+.invoice-row-head  {
+    border-bottom: 1.5px solid #8E8E8E;
+    font-weight: 400;
+    font-size: 15px;
+}
+  
+.invoice-cell-head {
+    text-align: left;
+    font-family: "Inter", sans-serif;
+    background: #e2e2e2;
+}
+  
+.invoice-body{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background: #fff;
+} 
+.invoice-row-body {
+    border-bottom: 1.5px solid #8E8E8E;
+}
+  
+.cell-body {
+    position: relative;
+    background: #fff;
+    display: flex;
+}
+  
+.telecharger{
+    left: 20px;
+    position: relative;
+    border: none;
+    background: none;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.download-icon {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    font-size: 20px;
+    color: #000;
+    background: none;
+}
+
+.download-icon:hover{
+    color: #000;
+    background-color: #8E8E8E;
+    border-radius: 50%;
+} 

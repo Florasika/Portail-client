@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+    background: #f1f1f1;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    gap: 1rem;
+    height: 740px;
+    width: 250px;
+    background: #fff;
+}
+
+.sidebar-logo{
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    background: #fff;
+    padding: 0 0 0 60px;
+    margin-top: 10px;
+    align-items: center;
+    display: flex;
+    gap: 5px;
+}
+
+.sidebar-menu {
+    display: flex;
+    margin-top: 45px;
+    flex-direction: column;
+    gap: 20px;
+    background: #fff;
+}
+
+.sidebar-menu .item{
+    font-size: 1.2rem;
+    background: none;
+    text-decoration: none;
+    font-weight: 400;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    gap: 30px;
+    padding: 5px;
+    color: #000;
+}
+
+.sidebar-menu .item:hover{
+    background: #99406C;
+    width: 180px;
+    color: #fff;
+    margin-left: 30px;
+    border-radius: 15px;
+}
+
+.sidebar-menu .icon{
+    background: none;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+
+
+
+.profile-card {
+    background-color: #8a4b77;
+    color: #000;
+    position: fixed;
+    border-radius: 15px;
+    top: 520px;
+    margin-left: 13px;
+    width: 220px;
+    text-align: center;
+  }
+  h3{
+    position: relative;
+    width: 120px;
+    top: -40px;
+    left: 70px;
+    background: none;
+  }
+  
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+    top: 10px;
+    margin-left: -140px;
+    border-radius: 50%;
+  }
+  
+  .profile-item {
+    font-size: 20px;
+    background: none;
+    justify-content: flex-end;
+    width: 150px;
+    margin-left: 55px;
+    margin-bottom: 15px;
+    height: 40px;
+    text-decoration: none;
+    display: flex;
+    padding-right: 5px;
+    align-items: center;
+    border-radius: 10px;
+    color: #fff;
+  }
+  
+  .icon1 {
+    background: none;
+    font-size: 30px;
+    position: fixed;
+    left: 65px;
+}
+
+  .profile-item:hover, .icon1:hover{
+    background-color: #fff;
+    opacity: 50%;
+    width: 160px;
+    color: #000;
+    left: 5px;
+    border-radius: 10px;
+  }
+
+  

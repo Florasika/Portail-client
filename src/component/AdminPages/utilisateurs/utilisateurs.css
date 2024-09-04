@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.table-user{
+    margin: 250px 270px; 
+    max-width: 1180px;
+    position: fixed;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    border-collapse: collapse;
+}
+
+.table-user-root{
+    vertical-align: middle;
+    background: #fff;
+}
+
+.header_user{
+    background-color: #fff;
+}
+
+.row-head-user{
+    border-bottom: 1.6px solid #555555;
+}
+
+.cell-user-head{
+    font-weight: bold;
+    background: #fff;
+    color: #000;
+    font-size: 12px;
+    font-family: "Inter", sans-serif;
+}
+
+.body-user{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background: #fff;
+}
+
+.row-body-user{
+    border-bottom: 1.6px solid #ccc;
+}
+
+.cell-user-body{
+    position: relative;
+    background: #fff;
+    display: flex;
+}
+
+.cell-user-body button{
+    left: 10px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    top: -2px;
+}
+
+.actions{
+    background: #FCA7A7;
+    width: 100px;
+    height: auto;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 5px;
+    position: fixed;
+    margin-left: -90px;
+    color: #000;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    outline: none;
+}
+
+.cell-user-body a{
+    display: flex;
+    justify-content: flex-end; /* Place l'icône à droite */
+    align-items: center;
+    border: none;
+    padding: 5px;
+    position: fixed; 
+    margin-top: -30px;
+    background: none;
+    cursor: pointer;
+    margin-left: 55px; /* Ajuste l'espace entre le bouton et l'icône */
+}
+
+.cell-user-body .delete-icon{
+    font-size: 20px;
+    color: #F80110;
+    background: none;
+}
