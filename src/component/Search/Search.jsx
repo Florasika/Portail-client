@@ -14,6 +14,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import TableUtilisateurs from '../AdminPages/utilisateurs/utilisateurs';
 import AdminCommande from '../AdminPages/AdminCommande/AdminCommande';
 import AdminDemande from '../AdminPages/DemandeAdmin/AdminDemande';
+import axiosInstance from '../../axios';
 
 
 
@@ -36,22 +37,39 @@ function Search({ type }) {
         nom: '',
         prenom: '',
         email: '',
-        role: ''
+        tel: '' // Ajoutez le champ numéro ici
     });
+
+    const handleUserChange = (e) => {
+        const { id, value } = e.target;
+        setUserFormData((prevUserFormData) => ({
+            ...prevUserFormData,
+            [id]: value,
+        }));
+    };
+
+    const handleUserSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axiosInstance.post('/auth/createUser', userFormData, {
+                timeout: 30000 // 30 secondes
+            });
+
+            console.log('Utilisateur créé avec succès:', response.data);
+
+            // Fermer la popup après succès
+            setIsUserPopupOpen(false);
+        } catch (error) {
+            console.error("Erreur lors de la création de l'utilisateur :", error.response?.data || error.message);
+        }
+    };
     const [selectedRow, setSelectedRow] = useState(null);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormData(prevFormData => ({
             ...prevFormData,
-            [id]: value
-        }));
-    };
-
-    const handleUserChange = (e) => {
-        const { id, value } = e.target;
-        setUserFormData(prevUserFormData => ({
-            ...prevUserFormData,
             [id]: value
         }));
     };
@@ -70,12 +88,6 @@ function Search({ type }) {
         e.preventDefault();
         console.log("Données envoyées :", formData);
         setIsOpen(false);
-    };
-
-    const handleUserSubmit = (e) => {
-        e.preventDefault();
-        console.log("Utilisateur créé :", userFormData);
-        setIsUserPopupOpen(false);
     };
 
     let TableComponent = null;
@@ -447,19 +459,19 @@ function Search({ type }) {
                                 <label htmlFor="num">Numéro</label>
                                 <div className="input-with-icon">
                                     <input
-                                    type="tel"
-                                    id="num"
-                                    value={formData.num}
-                                    onChange={handleChange}
+                                        type="tel"
+                                        id="tel"
+                                        value={userFormData.tel}
+                                        onChange={handleUserChange}
                                     />
                                     <a href="tel:" className="icon-link">
-                                    <MdLocalPhone className="icon" />
+                                        <MdLocalPhone className="icon" />
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <button type="submit" className="submit-btn">Soumettre</button>
-                        <button type="delete" className='delete-btn'>Supprimer</button>
+                        <button type="button" className="delete-btn" onClick={() => setIsUserPopupOpen(false)}>Annuler</button>
                     </form>
                 </div>
             )}

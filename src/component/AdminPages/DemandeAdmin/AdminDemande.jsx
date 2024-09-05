@@ -24,7 +24,6 @@ const AdminDemande = () => {
                         <TableCell className="table-cell-head">Livraison</TableCell>
                         <TableCell className="table-cell-head">Type de marchandise</TableCell>
                         <TableCell className="table-cell-head">Poids</TableCell>
-                        <TableCell className="table-cell-head">Quantité</TableCell>
                         <TableCell className="table-cell-head">Statut</TableCell>
                        
                     </TableRow>
@@ -36,7 +35,6 @@ const AdminDemande = () => {
                             <TableCell className="table-cell-body">{row.livraison}</TableCell>
                             <TableCell className="table-cell-body">{row.type}</TableCell>
                             <TableCell className="table-cell-body">{row.poids}</TableCell>
-                            <TableCell className="table-cell-body">{row.quantite}</TableCell>
                             <TableCell className="table-cell-body">
                                 <span className={`status-icon ${row.statut}`}></span>
                             </TableCell>

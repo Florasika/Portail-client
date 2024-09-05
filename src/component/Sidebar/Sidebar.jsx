@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import './Sidebar.css';  // Un seul fichier CSS pour les deux sidebars
 import { RiHandCoinFill } from "react-icons/ri";
 import { FaClipboardList } from "react-icons/fa";
@@ -8,10 +9,23 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { PiUserLight } from "react-icons/pi";
 import { ImStatsBars } from "react-icons/im";
 import { AiOutlineLogout } from "react-icons/ai";
-import Search from "../Search/Search";
-import TableUtilisateurs from "../AdminPages/utilisateurs/utilisateurs";
 
 const Sidebar = ({ role }) => {
+    const navigate = useNavigate(); // Hook pour la navigation
+
+    const handleLogout = () => {
+        // Supprimer les informations de l'utilisateur du localStorage
+        localStorage.removeItem('userId');
+        localStorage.removeItem('jwt');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('expiresAt');
+        localStorage.removeItem('email');
+        localStorage.removeItem('role');
+        
+        // Rediriger vers la page de connexion
+        navigate('/');
+    };
+
     return (
         <div>
             <div className="container">
@@ -58,7 +72,7 @@ const Sidebar = ({ role }) => {
                             Paramètres
                             <IoSettingsOutline className="icon1" />
                         </a>
-                        <a href="#" className="profile-item">
+                        <a href="#" className="profile-item" onClick={handleLogout}>
                             Déconnexion
                             <AiOutlineLogout className="icon1" />
                         </a>

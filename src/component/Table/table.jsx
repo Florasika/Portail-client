@@ -1,55 +1,68 @@
-import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import axiosInstance from '../../axios'; // Assurez-vous que le chemin vers axiosInstance est correct
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import './table.css'; // Assurez-vous de créer ce fichier pour vos styles personnalisés
+import './table.css';  // Assurez-vous que le fichier CSS existe pour vos styles
 
 const TableDemande = () => {
-    const rows = [
-        { transport: 'Chine', livraison: 'Lomé', type: 'Élaboré', poids: '50KG', quantite: 20, statut: 'green' },
-        { transport: 'Chine', livraison: 'Agoè', type: 'Non-Élaboré', poids: '50KG', quantite: 20, statut: 'red' },
-        { transport: 'Chine', livraison: 'Tokoin', type: 'Périssable', poids: '50KG', quantite: 20, statut: 'green' },
-        { transport: 'Chine', livraison: 'Baguida', type: 'Non-périssable', poids: '50KG', quantite: 20, statut: 'green' },
-        
-    ];
+    const [rows, setRows] = useState([]);
 
-  
+    useEffect(() => {
+        const fetchDemandes = async () => {
+            try {
+                const response = await axiosInstance.get('admin/all-demande');
+                console.log('Réponse reçue du backend :', response.data);  // Affichez la réponse pour vérifier les données
+                setRows(response.data);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données :', error);
+            }
+        };
+
+        fetchDemandes();
+    }, []);
 
     return (
         <TableContainer component={Paper} className="table-container">
-            <Table className="table-root" aria-label="simple table">
+            <Table className="table-root" aria-label="table des demandes">
                 <TableHead className="table-head">
                     <TableRow className="table-row-head">
                         <TableCell className="table-cell-head">Transport</TableCell>
                         <TableCell className="table-cell-head">Livraison</TableCell>
                         <TableCell className="table-cell-head">Type de marchandise</TableCell>
                         <TableCell className="table-cell-head">Poids</TableCell>
-                        <TableCell className="table-cell-head">Quantité</TableCell>
                         <TableCell className="table-cell-head">Statut</TableCell>
-                       
+                        <TableCell className="table-cell-head">Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody className="table-body">
-                    {rows.map((row, index) => (
-                        <TableRow key={index} className="table-row-body">
-                            <TableCell className="table-cell-body">{row.transport}</TableCell>
-                            <TableCell className="table-cell-body">{row.livraison}</TableCell>
-                            <TableCell className="table-cell-body">{row.type}</TableCell>
-                            <TableCell className="table-cell-body">{row.poids}</TableCell>
-                            <TableCell className="table-cell-body">{row.quantite}</TableCell>
-                            <TableCell className="table-cell-body">
-                                <span className={`status-icon ${row.statut}`}></span>
-                            </TableCell>
-                            <TableCell className="icon-button">
-                                <a href="#">
-                                    <FaEdit className="edit-icon"/>
-                                </a>
-                                <a href="#">
-                                 <MdDelete className="delete-icon"/>
-                                </a>
+                    {rows.length === 0 ? (
+                        <TableRow>
+                            <TableCell colSpan={6} className="no-data-cell">
+                                <Typography align="center">Aucune demande disponible</Typography>
                             </TableCell>
                         </TableRow>
-                    ))}
+                    ) : (
+                        rows.map((row, index) => (
+                            <TableRow key={index} className="table-row-body">
+                                <TableCell className="table-cell-body">{row.transport}</TableCell> {/* Assurez-vous que ce champ correspond */}
+                                <TableCell className="table-cell-body">{row.livraison}</TableCell> {/* Assurez-vous que ce champ correspond */}
+                                <TableCell className="table-cell-body">{row.type}</TableCell> {/* Assurez-vous que ce champ correspond */}
+                                <TableCell className="table-cell-body">{row.poids}</TableCell> {/* Assurez-vous que ce champ correspond */}
+                                <TableCell className="table-cell-body">
+                                    <span className={`status-icon ${row.statut.toLowerCase()}`}></span> {/* Gérer les statuts */}
+                                </TableCell>
+                                <TableCell className="icon-button">
+                                    <a href="#">
+                                        <FaEdit className="edit-icon"/>
+                                    </a>
+                                    <a href="#">
+                                        <MdDelete className="delete-icon"/>
+                                    </a>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    )}
                 </TableBody>
             </Table>
         </TableContainer>
