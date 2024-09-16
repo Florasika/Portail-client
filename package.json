@@ -7,7 +7,6 @@
         "@emotion/styled": "^11.13.0",
         "@mui/material": "^6.0.1",
         "@mui/system": "^6.0.1",
-        "@react-google-maps/api": "^2.19.3",
         "axios": "^1.7.7",
         "cra-template": "1.2.0",
         "date-fns": "^3.6.0",

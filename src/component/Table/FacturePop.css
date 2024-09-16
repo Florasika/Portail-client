@@ -1,0 +1,220 @@
+.pop-up {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-up_content {
+    background-color: #fff; 
+    opacity: 80%;
+    backdrop-filter: blur(4px); /* Ajoute un flou sur l'arrière-plan */
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2),
+                0 0 5px rgba(0, 0, 0, 0.2),
+                0 0 30px rgba(0, 0, 0, 0.2); /* Ombres multiples pour un effet 3D */
+    
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; /* Ajuste la position du bouton */
+    right: 10px; /* Ajuste la position du bouton */
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 30px; 
+    width: 30px; 
+    background: #000;
+    border: none;
+    border-radius: 20%; 
+    cursor: pointer;
+    color: #fff;
+   
+}
+
+.close-icon {
+    font-size: 22px;
+    font-weight: normal;
+    background: none;
+    line-height: 0;
+}
+
+
+.invoice-header2 {
+    text-align: left;
+    margin-bottom: 20px;
+    background: none;
+    display: flex;
+    justify-content: space-between; /* Espace entre les deux sections */
+    align-items: center; /* Aligne les items verticalement */
+    margin-bottom: 20px;
+}
+
+
+.header-section2{
+    display: flex;
+    flex-direction: column; 
+    background: none;
+}
+
+.header-section{
+    display: flex;
+    flex-direction: column; 
+    margin-right: 50px;
+    background: none;
+}
+.header-section2 h2{
+    font-size: 25px;
+    font-weight: bold;
+    color: #FC624D;
+    background: none;
+}
+
+.header-section2 p{
+    font-size: 15px;
+    color: #555555;
+    margin-top: 10px;
+    background: none;
+}
+.header-section p{
+    font-size: 18px;
+    color: #000;
+    margin-top: 10px;
+    background: none;
+}
+
+
+.invoice-container2 {
+    margin-top: 20px;
+    background: none;
+}
+
+.invoice-table-root2 {
+    width: 100%;
+    border-collapse: collapse;
+    background: none;
+}
+
+.invoice-row-head2{
+    border: 3px solid #99406C;
+    background: none;
+}
+
+.invoice-cell-head2 {
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.invoice-row-head2 {
+    background-color: #fff;
+}
+
+.invoice-row-body2 {
+    background-color: #fff;
+}
+
+.invoice-body2{
+    background: none;
+}
+
+.invoice-row-body2{
+    background: none;
+}
+
+.cell-body2 {
+    padding: 10px;
+    background: #fff;
+}
+
+.invoice-summary2 {
+    margin-top: 20px;
+    background: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.invoice-summary2 h2{
+    background: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.invoice-summary2 p{
+    font-size: 12px;
+    color: #000;
+    background: none;
+    margin-top: 10px;
+}
+
+
+.invoice-total2{
+    background: none;
+    position: fixed;
+}
+.invoice-total2 h3 {
+    text-align: right;
+    width: 250px;
+    color: black;
+    margin: -70px 0 0 250px;
+}
+
+.download-btn2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* Centrer horizontalement */
+    padding: 10px 20px;
+    background-color: #f00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto; /* Ajuste automatiquement à la taille du texte */
+}
+
+.download-icon2 {
+    margin-right: 8px;
+}
+
+
+@media print {
+    .pop-up {
+        width: 100%; /* Assurez-vous que la largeur occupe toute la page */
+        height: auto; /* Laissez la hauteur s'adapter au contenu */
+        overflow: visible; /* Assurez-vous que tout le contenu est visible */
+    }
+
+    .pop-up_content {
+        width: 210mm; /* Largeur A4 en millimètres */
+        height: auto; /* Ajuste la hauteur automatiquement */
+        padding: 20px; /* Ajustez le padding si nécessaire */
+        font-size: 12px; /* Ajustez la taille de la police si nécessaire */
+        box-shadow: none; /* Retirer les ombres */
+        border: none; /* Retirer les bordures */
+    }
+
+    .invoice-header2, .invoice-summary2, .invoice-total2 {
+        font-size: 14px; /* Ajustez la taille de la police si nécessaire */
+    }
+
+    .invoice-table-root2 {
+        width: 100%;
+        font-size: 12px; /* Ajustez la taille de la police si nécessaire */
+    }
+
+    .download-btn2 {
+        display: none; /* Ne pas afficher le bouton lors de l'impression */
+    }
+}
+

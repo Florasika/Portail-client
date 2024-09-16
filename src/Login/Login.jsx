@@ -25,7 +25,7 @@ const Login = () => {
             if (response.data.message === "Authentication successful") {  
                 // Store user data in local storage
                 localStorage.setItem('userId', response.data.userId);
-                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('jwt', response.data.jwt);
                 localStorage.setItem('refreshToken', response.data.refreshToken);
                 localStorage.setItem('expiresAt', response.data.expiresAt);
                 localStorage.setItem('email', response.data.email);

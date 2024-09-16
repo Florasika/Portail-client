@@ -1,0 +1,65 @@
+.table-prix {
+    width: 100%; /* Utiliser 100% pour que le tableau prenne toute la largeur disponible */
+    max-width: 800px; /* Fixer une largeur maximale pour éviter qu'il ne devienne trop large */
+    margin: 20px auto; /* Centrer le tableau horizontalement */
+    border: 1px solid #555555;
+    border-radius: 10px;
+    overflow: auto; /* Ajouter un défilement horizontal si nécessaire */
+  }
+  
+  .root-prix {
+    background: #fff;
+  }
+  
+  .table-head-prix {
+    background-color: #f0f0f0; /* Changer la couleur de fond pour mieux se démarquer */
+  }
+  
+  .row-head-prix {
+    background: #e0e0e0; /* Couleur de fond des lignes d'en-tête */
+  }
+  
+  .cell-head-prix {
+    font-weight: bold;
+    color: #333;
+    background: #f0f0f0; /* Couleur de fond des cellules d'en-tête */
+  }
+  
+  .table-body-prix {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .table-row-prix:nth-of-type(even) {
+    background: #f9f9f9; /* Ajouter une couleur de fond alternée pour les lignes */
+  }
+  
+  .table-row-prix:nth-of-type(odd) {
+    background: #fff; /* Couleur de fond des lignes impaires */
+  }
+  
+  .cell-prix {
+    padding: 10px;
+    text-align: left; /* Alignement du texte à gauche */
+  }
+  
+  .cell-prix button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px; /* Ajouter un espace entre les boutons */
+    text-align: center; /* Centrer le texte dans les boutons */
+  }
+  
+  .update-btn {
+    background-color: #4CAF50; /* Couleur de fond verte pour le bouton de mise à jour */
+    color: #fff; /* Texte en blanc */
+  }
+  
+  .delete-btn {
+    background-color: #F44336; /* Couleur de fond rouge pour le bouton de suppression */
+    color: #fff; /* Texte en blanc */
+  }
+  

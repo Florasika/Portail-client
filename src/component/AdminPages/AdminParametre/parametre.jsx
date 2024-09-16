@@ -1,12 +1,19 @@
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './parametre.css';
+import Profil from '../AdminParametre/Profil';
+import PrixPrevus from '../AdminParametre/PrixPrevus';
 
 const Parametres = () => {
   const [theme, setTheme] = useState('light');
   const [notifications, setNotifications] = useState(false);
-
   const [profileImage, setProfileImage] = useState('profile-image-url');
+  const [activePage, setActivePage] = useState('profil');
   const fileInputRef = useRef(null);
+
+  // Appliquer la classe de thème au niveau du body
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -19,82 +26,51 @@ const Parametres = () => {
     }
   };
 
+  const handleEditButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleDeleteButtonClick = () => {
+    setProfileImage(''); // Réinitialiser l'image de profil
+  };
+
   return (
     <div className="profile-settings">
       <div className="header-setting">
-        <h2>Profil</h2>
-        <h2>Prix prévus</h2>
+        <h2
+          className={activePage === 'profil' ? 'active' : ''}
+          onClick={() => setActivePage('profil')}
+        >
+          Profil
+        </h2>
+        <h3
+          className={activePage === 'prix-prevus' ? 'active' : ''}
+          onClick={() => setActivePage('prix-prevus')}
+        >
+          Prix prévus
+        </h3>
         <button className="save-btn">Enregistrer</button>
       </div>
 
-      <div className="theme-section">
-        <p>Thème de l'application</p>
-        <div className="theme-toggle">
-          <span>Clair</span>
-          <label className="switch">
-            <input type="checkbox" onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
-            <span className="slider"></span>
-          </label>
-          <span>Sombre</span>
-        </div>
-      </div>
+      <div className="content">
+        {activePage === 'profil' && (
+          <Profil
+            theme={theme}
+            setTheme={setTheme}
+            notifications={notifications}
+            setNotifications={setNotifications}
+            profileImage={profileImage}
+            handleFileChange={handleFileChange}
+            handleEditButtonClick={handleEditButtonClick}
+            fileInputRef={fileInputRef} // Assurez-vous que Profil reçoit fileInputRef si nécessaire
+          />
+        )}
 
-      <div className="notifications-section">
-        <p>Activer les notifications en temps réel</p>
-        <label className="switch">
-          <input type="checkbox" onChange={() => setNotifications(!notifications)} />
-          <span className="slider"></span>
-        </label>
-      </div>
-
-      <div className="profile-information">
-        <h3>Profil</h3>
-        <div className="form-groupe">
-          <input type="text" placeholder="Nom" />
-          <input type="text" placeholder="Prénoms" />
-          <input type="password" placeholder="Mot de passe" />
-          <input type="password" placeholder="Confirmer" />
-          <input type="text" placeholder="Téléphone" />
-          <input type="text" placeholder="Rôle" />
-        </div>
-        <div className="profile-image1">
-          <img src="profile-image-url" alt="Profil" />
-          <div className="image-actions">
-          <button
-              className="edit-btn"
-              onClick={() => fileInputRef.current.click()}
-            >
-              Modifier
-            </button>
-            <button className="delete-btn">Supprimer</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="footer">
-        <div className="privacy-section">
-          <h3>Confidentialité et sécurité</h3>
-          <p>Lorem ipsum dolor sit amet consectetur. Id integer elementum platea urna vel nunc.</p>
-          <label className="switch">
-            <input type="checkbox" />
-            <span className="slider"></span>
-          </label>
-        </div>
-        <div className="faq-section">
-          <h3>FAQ</h3>
-          <div className="question">
-            <p>Questions</p>
-            <p>Lorem ipsum dolor sit amet consectetur. Id integer elementum platea urna vel nunc.</p>
-          </div>
-          <div className="question">
-            <p>Questions</p>
-            <p>Lorem ipsum dolor sit amet consectetur. Id integer elementum platea urna vel nunc.</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="more-info">
-        <a href="#">Aller sur le site pour accéder à plus d'informations</a>
+        {activePage === 'prix-prevus' && (
+          <PrixPrevus />
+        )}
       </div>
     </div>
   );
