@@ -1,0 +1,149 @@
+.pop-up {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-up_content {
+    background-color: #fff; 
+    opacity: 80%;
+    backdrop-filter: blur(4px); /* Ajoute un flou sur l'arrière-plan */
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2),
+                0 0 5px rgba(0, 0, 0, 0.2),
+                0 0 50px rgba(0, 0, 0, 0.2); /* Ombres multiples pour un effet 3D */
+    
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; /* Ajuste la position du bouton */
+    right: 10px; /* Ajuste la position du bouton */
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 30px; 
+    width: 30px; 
+    background: #000;
+    border: none;
+    border-radius: 40%; 
+    cursor: pointer;
+    color: #fff;
+   
+}
+
+.close-icon {
+    font-size: 15px;
+    font-weight: normal;
+    background: none;
+    line-height: 0; /* Supprime l'espacement interne de l'icône */
+}
+
+
+.invoice-header2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between; /* Espace entre les deux sections */
+    align-items: center; /* Aligne les items verticalement */
+    margin-bottom: 20px;
+}
+
+
+.header-section {
+    display: flex;
+    flex-direction: column; /* Pour que chaque section garde les éléments verticalement */
+    padding: 0 10px; /* Ajuste l'espacement horizontal si nécessaire */
+}
+
+.header-section h2, .header-section p {
+    margin: 0; /* Supprime les marges par défaut */
+}
+
+
+.invoice-header2 h2 {
+    color: red;
+}
+
+.invoice-container2 {
+    margin-top: 20px;
+}
+
+.invoice-table-root2 {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-cell-head2 {
+    font-weight: bold;
+    background-color: #f5f5f5;
+}
+
+.invoice-row-head2 {
+    background-color: #f5f5f5;
+}
+
+.invoice-row-body2 {
+    background-color: #fff;
+}
+
+.cell-body2 {
+    padding: 10px;
+}
+
+.invoice-summary2 {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.invoice-total2 h3 {
+    text-align: right;
+    color: black;
+}
+
+.download-btn2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* Centrer horizontalement */
+    padding: 10px 20px;
+    background-color: #f00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto; /* Ajuste automatiquement à la taille du texte */
+}
+
+.download-icon2 {
+    margin-right: 8px;
+}
+
+
+@media print {
+    .pop-up_content {
+        width: 200px;
+        padding: 20px;
+        font-size: 12px;
+    }
+    .invoice-header2, .invoice-total2 {
+        font-size: 16px;
+    }
+    .invoice-table-root2 {
+        width: 100%;
+        font-size: 12px;
+    }
+}

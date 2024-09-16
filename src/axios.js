@@ -10,7 +10,7 @@ axiosInstance.interceptors.request.use(
     config => {
         // Vérifiez si l'URL contient 'auth' pour ne pas ajouter le token
         if (!config.url.includes('auth')) {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('jwt');
             if (token) {
                 config.headers['Authorization'] = `Bearer ${token}`;
             }
@@ -33,18 +33,18 @@ axiosInstance.interceptors.response.use(
                 const refreshToken = localStorage.getItem('refreshToken');
                 const response = await axios.post('http://localhost:1520/api/auth/refresh-token', { refreshToken });
 
-                const { token, refreshToken: newRefreshToken } = response.data;
-                localStorage.setItem('token', token);
+                const { jwt, refreshToken: newRefreshToken } = response.data;
+                localStorage.setItem('jwt', jwt);
                 localStorage.setItem('refreshToken', newRefreshToken);
 
                 // Mettre à jour le header d'authentification
-                axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
+                axiosInstance.defaults.headers['Authorization'] = `Bearer ${jwt}`;
 
                 // Réessayer la requête initiale
                 return axiosInstance(originalRequest);
             } catch (err) {
                 // Rediriger vers la page de connexion en cas d'échec du rafraîchissement
-                window.location.href = '/';
+                window.location.href = '/login';
                 return Promise.reject(err);
             }
         }
