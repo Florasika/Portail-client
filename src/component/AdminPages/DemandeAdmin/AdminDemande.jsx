@@ -1,50 +1,52 @@
-import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
-import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import './AdminDemande.css'; // Assurez-vous de créer ce fichier pour vos styles personnalisés
+import React, { useState, useEffect } from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { FaInfoCircle } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom'; // Pour la navigation vers la page de détails
+import './AdminDemande.css';
+import axiosInstance from '../../../axios';
 
 const AdminDemande = () => {
-    const rows = [
-        { transport: 'Chine', livraison: 'Lomé', type: 'Élaboré', poids: '50KG', quantite: 20, statut: 'green' },
-        { transport: 'Chine', livraison: 'Agoè', type: 'Non-Élaboré', poids: '50KG', quantite: 20, statut: 'red' },
-        { transport: 'Chine', livraison: 'Tokoin', type: 'Périssable', poids: '50KG', quantite: 20, statut: 'green' },
-        { transport: 'Chine', livraison: 'Baguida', type: 'Non-périssable', poids: '50KG', quantite: 20, statut: 'green' },
-        
-    ];
+    const [rows, setRows] = useState([]);
+    const navigate = useNavigate(); // Hook pour naviguer vers d'autres pages
 
-  
+    const fetchDemandes = async () => {
+        try {
+            const response = await axiosInstance.get('admin/all-demande');
+            setRows(response.data);
+        } catch (error) {
+            console.error("Erreur lors de la récupération des demandes:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchDemandes();
+    }, []);
 
     return (
         <TableContainer component={Paper} className="table-container">
             <Table className="table-root" aria-label="simple table">
                 <TableHead className="table-head">
                     <TableRow className="table-row-head">
-                        <TableCell className="table-cell-head">Transport</TableCell>
-                        <TableCell className="table-cell-head">Livraison</TableCell>
                         <TableCell className="table-cell-head">Type de marchandise</TableCell>
-                        <TableCell className="table-cell-head">Poids</TableCell>
+                        <TableCell className="table-cell-head">Poids (kg)</TableCell>
                         <TableCell className="table-cell-head">Statut</TableCell>
-                       
+                        <TableCell className="table-cell-head">Demandé par</TableCell>
+                        <TableCell className="table-cell-head">Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody className="table-body">
                     {rows.map((row, index) => (
                         <TableRow key={index} className="table-row-body">
-                            <TableCell className="table-cell-body">{row.transport}</TableCell>
-                            <TableCell className="table-cell-body">{row.livraison}</TableCell>
-                            <TableCell className="table-cell-body">{row.type}</TableCell>
+                            <TableCell className="table-cell-body">{row.typeMarchandise}</TableCell>
                             <TableCell className="table-cell-body">{row.poids}</TableCell>
-                            <TableCell className="table-cell-body">
-                                <span className={`status-icon ${row.statut}`}></span>
-                            </TableCell>
+                            <TableCell className="table-cell-body">{row.statut}</TableCell>
+                            <TableCell className="table-cell-body">{row.demandePar}</TableCell>
                             <TableCell className="icon-button">
-                                <a href="#">
-                                    <FaEdit className="edit-icon"/>
-                                </a>
-                                <a href="#">
-                                 <MdDelete className="delete-icon"/>
-                                </a>
+                                <button 
+                                    onClick={() => navigate(`/demande/${row.id}`)} 
+                                    className="detail-icon-button">
+                                    <FaInfoCircle className="detail-icon" /> Détails
+                                </button>
                             </TableCell>
                         </TableRow>
                     ))}

@@ -20,9 +20,11 @@ import axiosInstance from '../../axios';
 
 function Search({ type }) {
     const [showDetails, setShowDetails] = useState(false);
-    const [role, setRole] = useState('admin');
     const [isOpen, setIsOpen] = useState(false);
     const [isUserPopupOpen, setIsUserPopupOpen] = useState(false);
+
+    const role = localStorage.getItem('role');
+    
     const [formData, setFormData] = useState({
         lieuTransport: '',
         lieuLivraison: '',
@@ -95,11 +97,11 @@ function Search({ type }) {
 
     switch (type) {
         case 'demande':
-            TableComponent = role === 'user' ? TableDemande : AdminDemande;
+            TableComponent = role === 'USER' ? TableDemande : AdminDemande;
             showElement = true;
             break;
         case 'commande':
-            TableComponent = role === 'user' ? TableCommande : AdminCommande;
+            TableComponent = role === 'USER' ? TableCommande : AdminCommande;
             showElement = true;
             break;
         case 'factureC':
@@ -130,7 +132,7 @@ function Search({ type }) {
                     <RiSearchLine className="search_icon" />
                 </a>
 
-                {type === 'demande' && role === 'user' && showElement && (
+                {type === 'demande' && role === 'USER' && showElement && (
                     <>
                         <div className="status-container">
                             <div className="status-item">
@@ -158,7 +160,7 @@ function Search({ type }) {
                     </>
                 )}
 
-                {type === 'demande' && role === 'admin' && showElement && (
+                {type === 'demande' && role === 'ADMIN' && showElement && (
                     <>
                         <div className="status-container">
                             <div className="status-item">
@@ -178,7 +180,7 @@ function Search({ type }) {
                     </>
                 )}
 
-                {type === 'commande' && role === 'user' && showElement &&(
+                {type === 'commande' && role === 'USER' && showElement &&(
                     <>
                     <div className="commande_container">
                         <h1>Listes des commandes</h1>
@@ -262,7 +264,7 @@ function Search({ type }) {
                     </>
                 )}
 
-                {type === 'commande' && role === 'admin' && showElement && !showDetails && (
+                {type === 'commande' && role === 'ADMIN' && showElement && !showDetails && (
                     <>
                         <div className="admin-container">
                             <h1>Listes des commandes</h1>
@@ -289,7 +291,7 @@ function Search({ type }) {
 
             
 
-                {type === 'factureC' && role ==='user' && showElement && !showDetails &&(
+                {type === 'factureC' && role ==='USER' && showElement && !showDetails &&(
                     <>
                     <div className="facture-container">
                         <h1>Listes des factures</h1>
@@ -299,7 +301,7 @@ function Search({ type }) {
                 )}
 
 
-                {type === 'utilisateur' && role === 'admin' && showElement && (
+                {type === 'utilisateur' && role === 'ADMIN' && showElement && (
                     <>
                         <div className="user-container">
                             <button className='search-user'>

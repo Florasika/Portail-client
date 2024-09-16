@@ -26,6 +26,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from '../src/Login/Login.jsx';
 import Search from "../src/component/Search/Search.jsx";
 import Profil from "../src/component/settingpages/profil.jsx";
+import DemandeDetails from './component/AdminPages/DemandeAdmin/DemandeDetails.jsx';
 
 
 
@@ -34,6 +35,7 @@ function App() {
     <div>
       <Routes>
         <Route path='/demande' element={<Search type="demande" />} />
+        <Route path="/demande/:id" element={<DemandeDetails />} />
         <Route path='/commande' element={<Search type="commande" />} />
         <Route path='/facture_client' element={<Search type="factureC" />} />
         <Route path='/utilisateurs' element={<Search type="utilisateur"/>} />

@@ -110,3 +110,28 @@
     margin-left: 40px;
     background: none; /* Ajustement de la marge pour aligner correctement */
 }
+.detail-icon-button {
+    background-color: #007bff; /* Couleur bleue pour le bouton */
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.detail-icon-button:hover {
+    background-color: #0056b3; /* Couleur bleue plus sombre au survol */
+}
+
+.detail-icon {
+    margin-right: 8px; /* Ajout d'un espace entre l'icône et le texte */
+}
+
+.detail-icon-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
