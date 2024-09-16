@@ -26,14 +26,32 @@ const PrixPrevus = () => {
     setShowTable(true); // Afficher le tableau après avoir appuyé sur Enregistrer
   };
 
+  const handleDelete = (index) => {
+    const newData = data.filter((_, i) => i !== index);
+    setData(newData);
+    if (newData.length === 0) setShowTable(false); // Si le tableau est vide, masquer la table
+  };
+
+  const handleUpdate = (index) => {
+    const itemToUpdate = data[index];
+    // Exemple de mise à jour avec un prompt (vous pouvez améliorer cela avec un formulaire plus convivial)
+    const newType = prompt('Modifier le type de marchandise:', itemToUpdate.type);
+    const newPrice = prompt('Modifier le prix:', itemToUpdate.price);
+
+    const updatedData = data.map((item, i) =>
+      i === index ? { ...item, type: newType || item.type, price: newPrice || item.price } : item
+    );
+    setData(updatedData);
+  };
+
   // Si `showTable` est vrai, afficher le tableau, sinon afficher le formulaire
   if (showTable) {
-    return <TablePrix data={data} />;
+    return <TablePrix data={data} onDelete={handleDelete} onUpdate={handleUpdate} />;
   }
 
   return (
     <div className="prix-prevus-container">
-      <div className="form-group">
+      <div className="form-g">
         <label htmlFor="marchandise">Type de marchandise</label>
         <select 
           id="marchandise" 
@@ -50,7 +68,7 @@ const PrixPrevus = () => {
         </select>
       </div>
 
-      <div className="form-group">
+      <div className="form-g">
         <label htmlFor="prixPrevu">Prix prévus/KG</label>
         <div className="input-group">
           <input 
@@ -58,22 +76,20 @@ const PrixPrevus = () => {
             id="prixPrevu" 
             value={prixPrevu} 
             onChange={handlePrixPrevuChange}
-            placeholder="Prix" 
             className="form-control"
           />
           <button className="btn-prix">Prix</button>
         </div>
       </div>
 
-      <div className="form-group">
+      <div className="form-g">
         <label htmlFor="prixTransport">Prix de transport/KM</label>
         <div className="input-group">
           <input 
             type="text" 
             id="prixTransport" 
             value={prixTransport} 
-            onChange={handlePrixTransportChange}
-            placeholder="Prix" 
+            onChange={handlePrixTransportChange} 
             className="form-control"
           />
           <button className="btn-prix">Prix</button>

@@ -1,5 +1,5 @@
 /*-------------------parametres---------------------*/
-body.light {
+/*body.light {
   background-color: #fff;
   color: #000;
 }
@@ -7,7 +7,7 @@ body.light {
 body.dark {
   background-color: #333;
   color: #fff;
-}
+}*/
 
 .profile-settings {
     font-family: Arial, sans-serif;
@@ -16,14 +16,14 @@ body.dark {
     height: 620px;
     margin: auto;
     padding: 20px;
-    background: #fff;
+    background: #f1f1f1;
   }
   
   .header-setting {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #fff;
+    background: none;
     margin-bottom: 20px;
     
   }
@@ -61,13 +61,13 @@ body.dark {
   }
 
   .content{
-    background: #fff;
+    background: none;
     border: none;
   }
   /*----------------profil-----------------------*/
   .profil{
     width: 1150px;
-    background: #fff;
+    background: none;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -223,25 +223,37 @@ body.dark {
   }
   
   .privacy-section{
-    width: 50%;
-    border-right: 1px solid #555555;
+    max-width: 45%;
     background: none;
+    position: relative;
+    margin: 20px 0 0 -50px;
+    display: flex; /* Utiliser Flexbox */
+    justify-content: space-between; /* Espacer le contenu */
+    align-items: center; /* Centrer verticalement */
   }
 
 
   .faq-section {
-    width: 45%;
+    width: 55%;
     background: none;
+    border-left: 1px solid #555555;
+    padding-left: 15px;
   }
   
   .privacy-section h3 {
-    margin-top: 10px;
-    width: 400px;
+    margin-top: -100px;
+    width: 100%;
   }
 
   .privacy-section p{
-    width: 400px;
+    width: 420px;
+    margin-left: -280px;
     background: none;
+  }
+
+  .privacy-section .switch {
+    margin-left: 30px; 
+    margin-right: 20px;/* Un petit espace entre le texte et le switch */
   }
 
   .faq-section h3 {
@@ -250,13 +262,16 @@ body.dark {
   }
   
   .question {
-    margin-bottom: 20px;
     background: none;
     margin-top: -40px;
+    margin-left: 10px;
+    background: none;
+    padding: 10px 0;
   }
 
   .question p{
     background: none;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   
@@ -278,26 +293,51 @@ body.dark {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 300px;
-    margin: auto;
+    padding: 20px 20px;
+    width: 400px;
+    height: 360px;
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: #000;
+    margin: 50px 0 0 350px;
   }
   
-  .form-group {
+  .prix-prevus-container .form-g {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
+    background: none;
   }
   
-  .input-group {
+  .form-g select{
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    background: none;
+
+  }
+  .prix-prevus-container label{
+    font-size: 16px;
+    margin-bottom: 10px;
+    background: none;
+  }
+  .form-g .input-group {
     display: flex;
     align-items: center;
+    background: none;
+  }
+
+  .form-g input{
+    border: 1px solid #000;
   }
   
   .form-control {
     flex-grow: 1;
     padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
+    border-radius: 5px;
   }
   
   .btn-prix {
@@ -305,23 +345,23 @@ body.dark {
     color: white;
     border: none;
     padding: 8px 12px;
-    margin-left: 5px;
+    width: 80px;
+    position: fixed;
+    margin-left: 280px;
     border-radius: 4px;
     cursor: pointer;
   }
   
   .btn-submit {
-    background-color: #ff6f47;
+    background-color: #FC624D;
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
-  }
-  
-  .btn-submit:hover, .btn-prix:hover {
-    background-color: #e05d3d;
+    margin-left: 170px;
+    margin-top: 10px;
+    width: 50%;
   }
   
   
