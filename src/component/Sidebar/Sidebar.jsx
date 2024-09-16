@@ -8,6 +8,7 @@ import { IoChatbubbles } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { PiUserLight } from "react-icons/pi";
 import { ImStatsBars } from "react-icons/im";
+import image from '../img/photo-1544005313-94ddf0286df2.avif';
 import { AiOutlineLogout } from "react-icons/ai";
 
 const Sidebar = ({ role }) => {
@@ -64,7 +65,7 @@ const Sidebar = ({ role }) => {
 
                     <div className="profile-card">
                         <img 
-                            src="../"  
+                            src={image}  
                             className="profile-pic" 
                         />
                         <h3>KOSSI Marie</h3>

@@ -1,10 +1,8 @@
 import React from 'react';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper } from '@mui/material';
-import { FaEdit } from 'react-icons/fa';
-import { MdDelete } from 'react-icons/md';
 import './TablePrix.css';
 
-const TablePrix = ({data, onDelete, onUpdate}) => {
+const TablePrix = ({ data, onDelete, onUpdate }) => {
   return (
     <TableContainer component={Paper} className="table-prix">
       <Table className="root-prix" aria-label="simple table">
@@ -23,9 +21,9 @@ const TablePrix = ({data, onDelete, onUpdate}) => {
               <TableCell className="cell-prix">{row.kg}</TableCell>
               <TableCell className="cell-prix">{row.price}</TableCell>
               <TableCell className="cell-prix">
-              <button 
+                <button 
                   className="update-btn"
-                  
+                  onClick={() => onUpdate(index)}
                 >
                   Update
                 </button>

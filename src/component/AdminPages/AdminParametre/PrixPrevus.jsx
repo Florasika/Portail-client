@@ -32,51 +32,55 @@ const PrixPrevus = () => {
   }
 
   return (
-    <div className="prix-prevus">
-      <div className="prix">
+    <div className="prix-prevus-container">
+      <div className="form-group">
         <label htmlFor="marchandise">Type de marchandise</label>
         <select 
           id="marchandise" 
           value={marchandise} 
           onChange={handleMarchandiseChange}
+          className="form-control"
         >
+          <option value="" disabled>Sélectionner</option>
           <option value="Périssable">Périssable</option>
           <option value="Transformé">Transformé</option>
           <option value="Non-Transformé">Non-Transformé</option>
-          <option value="Elaboré">Elaboré</option>
+          <option value="Elaboré">Élaboré</option>
           <option value="Non périssable">Non périssable</option>
         </select>
       </div>
 
-      <div className="prix">
+      <div className="form-group">
         <label htmlFor="prixPrevu">Prix prévus/KG</label>
-        <div className="input-with-button">
+        <div className="input-group">
           <input 
             type="text" 
             id="prixPrevu" 
             value={prixPrevu} 
             onChange={handlePrixPrevuChange}
             placeholder="Prix" 
+            className="form-control"
           />
-          <button>Prix</button>
+          <button className="btn-prix">Prix</button>
         </div>
       </div>
 
-      <div className="prix">
+      <div className="form-group">
         <label htmlFor="prixTransport">Prix de transport/KM</label>
-        <div className="input-with-button">
+        <div className="input-group">
           <input 
             type="text" 
             id="prixTransport" 
             value={prixTransport} 
             onChange={handlePrixTransportChange}
             placeholder="Prix" 
+            className="form-control"
           />
-          <button>Prix</button>
+          <button className="btn-prix">Prix</button>
         </div>
       </div>
 
-      <button className="submit-btn" onClick={handleSubmit}>Enregistrer</button>
+      <button className="btn-submit" onClick={handleSubmit}>Enregistrer</button>
     </div>
   );
 };
