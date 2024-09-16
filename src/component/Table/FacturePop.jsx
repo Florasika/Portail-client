@@ -27,24 +27,26 @@ console.log(rows);*/}
 
 
 
-    const handleDownloadPDF = () => {
-        // Masquer le bouton avant la capture
-        const downloadBtn = document.querySelector('.download-btn2');
-        if (downloadBtn) downloadBtn.style.display = 'none';
+const handleDownloadPDF = () => {
+    const downloadBtn = document.querySelector('.download-btn2');
+    if (downloadBtn) downloadBtn.style.display = 'none';
 
-        // Sélectionner la partie de la page à capturer
-        html2canvas(document.querySelector('#invoiceContent')).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const doc = new jsPDF();
-            doc.addImage(imgData, 'PNG', 0, 0);
-            doc.save('facture.pdf');
-
-            // Réafficher le bouton après la génération du PDF
-            if (downloadBtn) downloadBtn.style.display = 'block';
+    html2canvas(document.querySelector('#invoiceContent'), { scale: 2 }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+            orientation: 'portrait', // ou 'landscape' si vous préférez
+            unit: 'mm',
+            format: [210, 297] // Taille A4 en mm
         });
 
+        // Ajustez les dimensions de l'image ajoutée si nécessaire
+        pdf.addImage(imgData, 'PNG', 0, 0, 210, canvas.height * 210 / canvas.width);
+        pdf.save('facture.pdf');
 
-    };
+        if (downloadBtn) downloadBtn.style.display = 'block';
+    });
+};
+
     const paymentInfo = invoice.paymentInfo || {};
     const items = Array.isArray(invoice.items) ? invoice.items : [];
 
@@ -60,7 +62,7 @@ console.log(rows);*/}
                         <h2>Facture N°{invoice.number}</h2>
                         <p>Date: {invoice.dateEmission}</p>
                     </div>
-                    <div className="header-section2">
+                    <div className="header-section">
                         <p>M. {invoice.clientName}</p>
                         <p>{invoice.clientAddress}</p>
                     </div>
