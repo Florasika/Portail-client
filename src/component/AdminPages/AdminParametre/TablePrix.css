@@ -24,7 +24,7 @@
   background-color: #fafafa;
 }
 
-.update-btn, .delete-btn {
+.cell-prix .update-btn, .cell-prix .delete-btn {
   background-color: #ffcccc;
   color: #ff0000;
   border: none;
@@ -34,7 +34,7 @@
   cursor: pointer;
 }
 
-.update-btn:hover, .delete-btn:hover {
+.cell-prix .update-btn:hover, .delete-btn:hover {
   background-color: #ff9999;
 }
 

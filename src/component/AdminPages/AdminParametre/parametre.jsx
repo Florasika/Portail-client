@@ -36,6 +36,15 @@ const Parametres = () => {
     setProfileImage(''); // Réinitialiser l'image de profil
   };
 
+  const handleClick = (page) => {
+    setActivePage(page);
+
+    // Après un court délai, supprimer la classe active
+    setTimeout(() => {
+      setActivePage(null);
+    }, 1000); // 1 seconde avant de retirer la bordure
+  };
+
   return (
     <div className="profile-settings">
       <div className="header-setting">
