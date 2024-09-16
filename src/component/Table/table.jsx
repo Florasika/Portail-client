@@ -1,33 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../axios'; 
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, CircularProgress, Button } from '@mui/material';
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import './table.css';  
 import { useNavigate } from 'react-router-dom'; 
+import { format } from 'date-fns';
 
 const TableDemande = () => {  
     const [rows, setRows] = useState([]);
+    const [loading, setLoading] = useState(true);  
+    const [error, setError] = useState(null); 
     const navigate = useNavigate(); 
 
     const utilisateurId = localStorage.getItem('userId'); 
 
     useEffect(() => {
-        if (utilisateurId) { 
-            const fetchDemandes = async () => {
+        const fetchDemandes = async () => {
+            if (utilisateurId) { 
                 try {
-                    const response = await axiosInstance.get(`/demande-par-utilisateur/${utilisateurId}`);
-                    console.log('Réponse reçue du backend :', response.data);  
+                    setLoading(true);  // Déclenche le chargement
+                    const response = await axiosInstance.get(`/user/demande-par-utilisateur/${utilisateurId}`);
                     setRows(response.data);
                 } catch (error) {
+                    setError('Erreur lors de la récupération des données');
                     console.error('Erreur lors de la récupération des données :', error);
+                } finally {
+                    setLoading(false);  // Arrête le chargement
                 }
-            };
-    
-            fetchDemandes();
-        } else {
-            console.error('Aucun utilisateur connecté');
-        }
+            } else {
+                setError('Aucun utilisateur connecté');
+                console.error('Aucun utilisateur connecté');
+            }
+        };
+
+        fetchDemandes();
     }, [utilisateurId]); 
 
     const handleDelete = async (id) => {
@@ -36,6 +43,7 @@ const TableDemande = () => {
             setRows(rows.filter(row => row.id !== id));
             console.log(`Demande avec l'ID ${id} supprimée avec succès.`);
         } catch (error) {
+            setError('Erreur lors de la suppression de la demande');
             console.error('Erreur lors de la suppression de la demande :', error);
         }
     };
@@ -44,47 +52,67 @@ const TableDemande = () => {
         navigate(`/demande/edit/${id}`);
     };
 
+    const formatDate = (dateString) => {
+        if (!dateString) return "Date inconnue";
+        
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) {
+            return "Date invalide";
+        }
+    
+        return format(date, 'dd/MM/yyyy HH:mm:ss');
+    };
+
     return (
         <TableContainer component={Paper} className="table-container">
-            <Table className="table-root" aria-label="table des demandes">
-                <TableHead className="table-head">
-                    <TableRow className="table-row-head">
-                        <TableCell className="table-cell-head">Type de marchandise</TableCell>
-                        <TableCell className="table-cell-head">Poids (kg)</TableCell>
-                        <TableCell className="table-cell-head">Statut</TableCell>
-                        <TableCell className="table-cell-head">Demandé par</TableCell>
-                        <TableCell className="table-cell-head">Actions</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody className="table-body">
-                    {rows.length === 0 ? (
-                        <TableRow>
-                            <TableCell colSpan={6} className="no-data-cell">
-                                <Typography align="center">Aucune demande disponible</Typography>
-                            </TableCell>
+            {loading ? (
+                <div className="loading-indicator">
+                    <CircularProgress />
+                    <Typography>Chargement des données...</Typography>
+                </div>
+            ) : error ? (
+                <Typography align="center" color="error">{error}</Typography>
+            ) : (
+                <Table className="table-root" aria-label="table des demandes">
+                    <TableHead className="table-head">
+                        <TableRow className="table-row-head">
+                            <TableCell className="table-cell-head">Type de marchandise</TableCell>
+                            <TableCell className="table-cell-head">Description</TableCell>
+                            <TableCell className="table-cell-head">Poids (kg)</TableCell>
+                            <TableCell className="table-cell-head">Statut</TableCell>
+                            <TableCell className="table-cell-head">Actions</TableCell>
                         </TableRow>
-                    ) : (
-                        rows.map((row, index) => (
-                            <TableRow key={index} className="table-row-body">
-                                <TableCell className="table-cell-body">{row.typeMarchandise}</TableCell> {/* Type de marchandise */}
-                                <TableCell className="table-cell-body">{row.poids}</TableCell> {/* Poids */}
-                                <TableCell className="table-cell-body">
-                                    <span className={`status-icon ${row.statut.toLowerCase()}`}></span> {/* Statut */}
-                                </TableCell>
-                                <TableCell className="table-cell-body">{row.demandePar}</TableCell> {/* Utilisateur */}
-                                <TableCell className="icon-button">
-                                    <button onClick={() => handleEdit(row.id)} className="edit-button">
-                                        <FaEdit className="edit-icon"/> {/* Éditer */}
-                                    </button>
-                                    <button onClick={() => handleDelete(row.id)} className="delete-button">
-                                        <MdDelete className="delete-icon"/> {/* Supprimer */}
-                                    </button>
+                    </TableHead>
+                    <TableBody className="table-body">
+                        {rows.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={6} className="no-data-cell">
+                                    <Typography align="center">Aucune demande disponible</Typography>
                                 </TableCell>
                             </TableRow>
-                        ))
-                    )}
-                </TableBody>
-            </Table>
+                        ) : (
+                            rows.map((row, index) => (
+                                <TableRow key={index} className="table-row-body">
+                                    <TableCell className="table-cell-body">{row.typeMarchandise}</TableCell>
+                                    <TableCell className="table-cell-body">{row.descriptionMarchandise}</TableCell>
+                                    <TableCell className="table-cell-body">{row.poids}</TableCell>
+                                    <TableCell className="table-cell-body">
+                                        <span className={`status-icon`}>{row.statut.toLowerCase()}</span>
+                                    </TableCell>
+                                    {/* <TableCell className="icon-button">
+                                        <Button onClick={() => handleEdit(row.id)} variant="contained" color="primary" startIcon={<FaEdit />}>
+                                            Éditer
+                                        </Button>
+                                        <Button onClick={() => handleDelete(row.id)} variant="contained" color="secondary" startIcon={<MdDelete />}>
+                                            Supprimer
+                                        </Button>
+                                    </TableCell> */}
+                                </TableRow>
+                            ))
+                        )}
+                    </TableBody>
+                </Table>
+            )}
         </TableContainer>
     );
 };

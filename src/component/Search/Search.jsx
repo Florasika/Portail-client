@@ -24,7 +24,7 @@ function Search({ type }) {
     const [isUserPopupOpen, setIsUserPopupOpen] = useState(false);
 
     const role = localStorage.getItem('role');
-    
+
     const [formData, setFormData] = useState({
         lieuTransport: '',
         lieuLivraison: '',
@@ -86,11 +86,41 @@ function Search({ type }) {
         setShowDetails(false);
     };
 
-    const handleSubmit = (e) => {
+    // Fonction pour soumettre la demande
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Données envoyées :", formData);
-        setIsOpen(false);
+    
+        const [lieuTransportLatitude, lieuTransportLongitude] = formData.lieuTransport.split(',').map(coord => parseFloat(coord.trim()));
+    
+        const [lieuLivraisonLatitude, lieuLivraisonLongitude] = formData.lieuLivraison.split(',').map(coord => parseFloat(coord.trim()));
+    
+        const demandeData = {
+            lieuTransport: {
+                latitude: lieuTransportLatitude,
+                longitude: lieuTransportLongitude
+            },
+            lieuLivraison: {
+                latitude: lieuLivraisonLatitude,
+                longitude: lieuLivraisonLongitude
+            },
+            typeMarchandise: formData.typeMarchandise,
+            poids: formData.poids,
+            descriptionMarchandise: formData.descriptionMarchandise,
+            descPoids: formData.descPoids,
+            descLieuLivraison: formData.descLieuLivraison,
+            telLivreA: formData.livreA,
+            utilisateur: { id: localStorage.getItem('userId') }
+        };
+    
+        try {
+            const response = await axiosInstance.post(`/user/add-demmande/${localStorage.getItem('userId')}`, demandeData);
+            console.log('Demande créée avec succès:', response.data);
+            setIsOpen(false); // Ferme la popup après la création
+        } catch (error) {
+            console.error('Erreur lors de la création de la demande :', error);
+        }
     };
+    
 
     let TableComponent = null;
     let showElement = false;
@@ -330,98 +360,108 @@ function Search({ type }) {
                                 <div className="form-group small">
                                     <label htmlFor="lieuTransport">Lieu de transport</label>
                                     <div className="input-with-icon">
-                                    <input
-                                        type="text"
-                                        id="lieuTransport"
-                                        value={formData.lieuTransport}
-                                        onChange={handleChange}
-                                    />
-                                    <a
-                                        href="https://maps.google.com"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="icon-link"
-                                    >
-                                    <FaLocationDot  className="icon" /></a>
+                                        <input
+                                            type="text"
+                                            id="lieuTransport"
+                                            value={formData.lieuTransport}
+                                            onChange={handleChange}
+                                        />
+                                        <a
+                                            href="https://maps.google.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="icon-link"
+                                        >
+                                            <FaLocationDot className="icon" />
+                                        </a>
                                     </div>
                                 </div>
-                                 <div className="form-group small">
+                                <div className="form-group small">
                                     <label htmlFor="lieuLivraison">Lieu de livraison</label>
                                     <div className="input-with-icon">
-                                    <input
-                                        type="text"
-                                        id="lieuLivraison"
-                                        value={formData.lieuLivraison}
-                                        onChange={handleChange}
-                                    />
-                                     <a
-                                        href="https://maps.google.com"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="icon-link"
-                                    >
-                                    <FaLocationDot  className="icon" /></a>
+                                        <input
+                                            type="text"
+                                            id="lieuLivraison"
+                                            value={formData.lieuLivraison}
+                                            onChange={handleChange}
+                                        />
+                                        <a
+                                            href="https://maps.google.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="icon-link"
+                                        >
+                                            <FaLocationDot className="icon" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             <div className="form-row">
-                            <div className="form-group small">
-                                <label htmlFor="typeMarchandise">Type de marchandise</label>
-                                <input
-                                type="text"
-                                id="typeMarchandise"
-                                value={formData.typeMarchandise}
-                                onChange={handleChange}
-                                />
-                            </div>
-                            <div className="form-group small">
-                                <label htmlFor="poids">Poids</label>
-                                <input
-                                type="number"
-                                id="poids"
-                                value={formData.poids}
-                                onChange={handleChange}
-                                />
-                            </div>
+                                <div className="form-group small">
+                                    <label htmlFor="typeMarchandise">Type de marchandise</label>
+                                    <select
+                                        id="typeMarchandise"
+                                        value={formData.typeMarchandise}
+                                        onChange={handleChange}
+                                        required
+                                        >
+                                        <option value="">Sélectionnez un type de marchandise</option>
+                                        <option value="PERISSABLES">Périssables</option>
+                                        <option value="NON_PERISSABLES">Non Périssables</option>
+                                        <option value="DANGEREUSES">Dangereuses</option>
+                                        <option value="VOLUMINEUSES">Volumineuses</option>
+                                        <option value="FRAGILES">Fragiles</option>
+                                    </select>
+
+                                </div>
+                                <div className="form-group small">
+                                    <label htmlFor="poids">Poids (kg)</label>
+                                    <input
+                                        type="number"
+                                        id="poids"
+                                        value={formData.poids}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
                             <div className="form-row">
-                            <div className="form-group small">
-                                <label htmlFor="quantite">Quantité</label>
-                                <input
-                                type="number"
-                                id="quantite"
-                                value={formData.quantite}
-                                onChange={handleChange}
-                                />
-                            </div>
-                            <div className="form-group small">
-                                <label htmlFor="descPoids">Description du lieu de livraison</label>
-                                <input
-                                type="text"
-                                id="descPoids"
-                                value={formData.descPoids}
-                                onChange={handleChange}
-                                />
-                            </div>
+                                <div className="form-group small">
+                                    <label htmlFor="descriptionMarchandise">Description marchandise</label>
+                                    <input
+                                        type="text"
+                                        id="descriptionMarchandise"
+                                        value={formData.descriptionMarchandise}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="form-group small">
+                                    <label htmlFor="descPoids">Description du lieu de livraison</label>
+                                    <input
+                                        type="text"
+                                        id="descPoids"
+                                        value={formData.descPoids}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
                             <div className="form-group full">
                                 <label htmlFor="livreA">Personne à prévenir</label>
                                 <div className="input-with-icon">
                                     <input
-                                    type="tel"
-                                    id="livreA"
-                                    value={formData.livreA}
-                                    onChange={handleChange}
+                                        type="tel"
+                                        id="livreA"
+                                        value={formData.livreA}
+                                        onChange={handleChange}
                                     />
                                     <a href="tel:" className="icon-link">
-                                    <MdLocalPhone className="icon" />
+                                        <MdLocalPhone className="icon" />
                                     </a>
                                 </div>
                             </div>
                             <button type="submit" className="submit-btn">Soumettre</button>
                         </form>
-                        </div>
-                    )}
+                    </div>
+                )}
 
 {isUserPopupOpen && (
                 <div className="popup">
