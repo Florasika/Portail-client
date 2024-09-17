@@ -434,6 +434,7 @@
   
   .form-group label {
     margin-bottom: 5px;
+    text-align: left;
     font-size: 14px;
     background: #fff;
 }
@@ -452,6 +453,16 @@
     font-size: 14px;
     border: 1px solid #000;
     border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+  .form-group select{
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #000;
+    font-size: 14px;
+    padding: 8px;
+    width: 250px;
     box-sizing: border-box;
   }
   

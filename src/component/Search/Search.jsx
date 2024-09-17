@@ -406,7 +406,7 @@ function Search({ type }) {
                                         onChange={handleChange}
                                         required
                                         >
-                                        <option value="">Sélectionnez un type de marchandise</option>
+                                        <option value="">Sélectionnez</option>
                                         <option value="PERISSABLES">Périssables</option>
                                         <option value="NON_PERISSABLES">Non Périssables</option>
                                         <option value="DANGEREUSES">Dangereuses</option>
