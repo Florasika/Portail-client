@@ -20,7 +20,7 @@
     width: 1500px;
     height: 680px;
     position: fixed;
-    background: url(../img/carte\ du\ monde.jpg) no-repeat center/cover;
+    background-image: url('/src/component/img/carte du monde.jpg') no-repeat center/cover;
 }
 
 .rectangle2 {
