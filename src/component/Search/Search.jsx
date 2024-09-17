@@ -24,7 +24,7 @@ function Search({ type }) {
     const [isUserPopupOpen, setIsUserPopupOpen] = useState(false);
     
     {/*const role = localStorage.getItem('role');*/}
-    const [role, setRole] = useState('admin');
+    const [role, setRole] = useState('user');
 
     const [formData, setFormData] = useState({
         lieuTransport: '',
