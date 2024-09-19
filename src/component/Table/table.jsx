@@ -7,6 +7,43 @@ import './table.css';
 import { useNavigate } from 'react-router-dom'; 
 import { format } from 'date-fns';
 
+
+
+const fetchDemandes = async (utilisateurId, setRows, setLoading, setError) => {
+    try {
+        setLoading(true);  // Déclenche le chargement
+        const token = localStorage.getItem('token'); // Récupérer le token d'authentification
+
+        const response = await axiosInstance.get(`/user/demande-par-utilisateur/${utilisateurId}`, {
+            headers: {
+                Authorization: `Bearer ${token}` // Ajouter le token à l'en-tête
+            }
+        });
+
+        setRows(response.data);
+    } catch (error) {
+        if (error.response) {
+            // Réponse reçue avec un code d'erreur
+            setError(`Erreur lors de la récupération des données : ${error.response.data.message || 'Erreur inconnue'}`);
+            console.error('Erreur lors de la récupération des données :', error.response.data);
+        } else if (error.request) {
+            // La requête a été envoyée mais aucune réponse n'a été reçue
+            setError('Aucune réponse reçue du serveur');
+            console.error('Aucune réponse reçue du serveur :', error.request);
+        } else {
+            // Une erreur s'est produite lors de la configuration de la requête
+            setError('Erreur lors de la configuration de la requête');
+            console.error('Erreur lors de la configuration de la requête :', error.message);
+        }
+    } finally {
+        setLoading(false);  // Arrête le chargement
+    }
+};
+
+
+
+    
+
 const TableDemande = () => {
     const [rows, setRows] = useState([]);
     const [loading, setLoading] = useState(true);  
@@ -16,26 +53,13 @@ const TableDemande = () => {
     const utilisateurId = localStorage.getItem('userId'); 
 
     useEffect(() => {
-        const fetchDemandes = async () => {
-            if (utilisateurId) { 
-                try {
-                    setLoading(true);  // Déclenche le chargement
-                    const response = await axiosInstance.get(`/user/demande-par-utilisateur/${utilisateurId}`);
-                    setRows(response.data);
-                } catch (error) {
-                    setError('Erreur lors de la récupération des données');
-                    console.error('Erreur lors de la récupération des données :', error);
-                } finally {
-                    setLoading(false);  // Arrête le chargement
-                }
-            } else {
-                setError('Aucun utilisateur connecté');
-                console.error('Aucun utilisateur connecté');
-            }
-        };
-
-        fetchDemandes();
-    }, [utilisateurId]); 
+        if (utilisateurId) {
+            fetchDemandes(utilisateurId, setRows, setLoading, setError);
+        } else {
+            setError('Aucun utilisateur connecté');
+            console.error('Aucun utilisateur connecté');
+        }
+    }, [utilisateurId]);
 
     const handleDelete = async (id) => {
         try {

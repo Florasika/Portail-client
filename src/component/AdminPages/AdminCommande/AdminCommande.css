@@ -89,25 +89,23 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    margin-left: 80px; 
+    left: 80px; 
+    margin-right: 30px;
+    display: flex;
     margin-top: -20px;/* Ajuste l'espace entre le bouton et l'icône */
 }
 
-.details{
+.cell_body1 .details{ 
     background: #FCA7A7;
     width: 100px;
-    height: auto;
+    padding: 8px 12px;
     border: none;
     border-radius: 15px;
-    font-size: 15px;
-    top: 5px;
-    padding: 5px;
-    position: fixed;
-    left: 30px;
+    font-size: 14px;
     color: #000;
     font-family: "Inter", sans-serif;
     cursor: pointer;
-    outline: none;
+    transition: background-color 0.3s ease;
 }
 
 .cell_body1 a{
@@ -120,7 +118,7 @@
     margin-top: -30px;
     background: none;
     cursor: pointer;
-    margin-left: 320px; /* Ajuste l'espace entre le bouton et l'icône */
+    margin-left: 220px; /* Ajuste l'espace entre le bouton et l'icône */
 }
 
 .cell_body1 .delete-icon{

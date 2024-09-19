@@ -76,37 +76,26 @@
     background-color: #F80110;
 }
 
-.icon-button {
-    background: #fff; /* Suppression de la couleur de fond */
-    display: flex;
-    padding: 0;
+.table-cell-body button {
+    position: relative;
     justify-content: center;
     align-items: center;
-    width: 40px;  /* Ajustez la largeur selon vos besoins */
-    height: 40px; /* Ajustez la hauteur selon vos besoins */
-    margin: 0 5px;
+    left: 100px; 
+    display: flex;
+    margin-top: -20px;
+}
+
+.detail {
+    background: #FCA7A7;
+    width: 100px;
+    padding: 8px 12px;
     border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    color: #000;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.icon-button a{
-    background: none;
-}
 
-.icon-button .edit-icon,
-.icon-button .delete-icon {
-    font-size: 25px;
-    background: #fff;
-    border: none;
-}
-
-.icon-button .edit-icon {
-    color: #00AF12;
-    margin-left: -60px;
-    background: none; /* Ajustement de la marge pour aligner correctement */
-}
-
-.icon-button .delete-icon {
-    color: #F80110;
-    margin-left: 40px;
-    background: none; /* Ajustement de la marge pour aligner correctement */
-}

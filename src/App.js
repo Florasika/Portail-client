@@ -29,6 +29,7 @@ import Profil from "../src/component/settingpages/profil.jsx";
 
 
 
+
 function App() {
   return (
     <div>
@@ -38,6 +39,7 @@ function App() {
         <Route path='/facture_client' element={<Search type="factureC" />} />
         <Route path='/utilisateurs' element={<Search type="utilisateur"/>} />
         <Route path='/parametre' element={<Profil type="parametres"/>} />
+        <Route path='/parametreUser' element={<Profil type="parametres"/>} />
         <Route path='/' element={<Login />} />
       </Routes>
     </div>

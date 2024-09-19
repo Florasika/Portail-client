@@ -33,6 +33,10 @@
     background: #fff;
 }
 
+.sidebar-menu a{
+  background: none;
+}
+
 .sidebar-menu .item{
     font-size: 1.2rem;
     background: none;

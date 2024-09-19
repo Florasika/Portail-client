@@ -24,7 +24,7 @@ function Search({ type }) {
     const [isUserPopupOpen, setIsUserPopupOpen] = useState(false);
     
     {/*const role = localStorage.getItem('role');*/}
-    const [role, setRole] = useState('user');
+    const [role, setRole] = useState('admin');
 
     const [formData, setFormData] = useState({
         lieuTransport: '',
@@ -88,7 +88,7 @@ function Search({ type }) {
     };
 
     // Fonction pour soumettre la demande
-    const handleSubmit = async (e) => {
+    {/*const handleSubmit = async (e) => {
         e.preventDefault();
     
         const [lieuTransportLatitude, lieuTransportLongitude] = formData.lieuTransport.split(',').map(coord => parseFloat(coord.trim()));
@@ -120,7 +120,67 @@ function Search({ type }) {
         } catch (error) {
             console.error('Erreur lors de la création de la demande :', error);
         }
+    };*/}
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        // Extraire les coordonnées et les convertir en float
+        const [lieuTransportLatitude, lieuTransportLongitude] = formData.lieuTransport.split(',').map(coord => parseFloat(coord.trim()));
+        const [lieuLivraisonLatitude, lieuLivraisonLongitude] = formData.lieuLivraison.split(',').map(coord => parseFloat(coord.trim()));
+    
+        // Créer les données de la demande
+        const demandeData = {
+            lieuTransport: {
+                latitude: lieuTransportLatitude,
+                longitude: lieuTransportLongitude
+            },
+            lieuLivraison: {
+                latitude: lieuLivraisonLatitude,
+                longitude: lieuLivraisonLongitude
+            },
+            typeMarchandise: formData.typeMarchandise,
+            poids: formData.poids,
+            descriptionMarchandise: formData.descriptionMarchandise,
+            descPoids: formData.descPoids,
+            descLieuLivraison: formData.descLieuLivraison,
+            telLivreA: formData.livreA,
+            utilisateur: { id: localStorage.getItem('userId') } // Utilisateur connecté
+        };
+    
+        try {
+            // Ajouter l'en-tête Authorization avec le token
+            const token = localStorage.getItem('token'); // Assure-toi que le token est stocké
+    
+            const response = await axiosInstance.post(
+                `/user/add-demmande/${localStorage.getItem('userId')}`, 
+                demandeData, 
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Ajouter le token à l'en-tête
+                        'Content-Type': 'application/json' // Assurer que le type de contenu est correct
+                    }
+                }
+            );
+    
+            console.log('Demande créée avec succès:', response.data);
+            setIsOpen(false); // Ferme la popup après la création
+    
+        } catch (error) {
+            if (error.response) {
+                // Réponse reçue avec un code d'erreur (comme 403, 500, etc.)
+                console.error('Erreur lors de la création de la demande :', error.response.data);
+                alert(`Erreur: ${error.response.data.message || 'Erreur inconnue'}`);
+            } else if (error.request) {
+                // La requête a été envoyée mais aucune réponse n'a été reçue
+                console.error('Aucune réponse reçue du serveur:', error.request);
+            } else {
+                // Une erreur s'est produite lors de la configuration de la requête
+                console.error('Erreur lors de la configuration de la requête :', error.message);
+            }
+        }
     };
+    
     
 
     let TableComponent = null;
@@ -203,9 +263,6 @@ function Search({ type }) {
                                 <span className="status-text">En attente</span>
                             </div>
                         </div>
-                        <button className='search-button'>
-                            Approuver
-                        </button>
                         <h1>Listes des demandes des clients</h1>
                         {/* Ajoutez ici d'autres parties spécifiques à l'admin */}
                     </>
