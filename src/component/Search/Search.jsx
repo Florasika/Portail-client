@@ -15,6 +15,7 @@ import TableUtilisateurs from '../AdminPages/utilisateurs/utilisateurs';
 import AdminCommande from '../AdminPages/AdminCommande/AdminCommande';
 import AdminDemande from '../AdminPages/DemandeAdmin/AdminDemande';
 import axiosInstance from '../../axios';
+import TableFactureAdmin from '../AdminPages/AdminFacture/FactureAdmin';
 
 
 
@@ -86,41 +87,6 @@ function Search({ type }) {
         setSelectedRow(null);
         setShowDetails(false);
     };
-
-    // Fonction pour soumettre la demande
-    {/*const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        const [lieuTransportLatitude, lieuTransportLongitude] = formData.lieuTransport.split(',').map(coord => parseFloat(coord.trim()));
-    
-        const [lieuLivraisonLatitude, lieuLivraisonLongitude] = formData.lieuLivraison.split(',').map(coord => parseFloat(coord.trim()));
-    
-        const demandeData = {
-            lieuTransport: {
-                latitude: lieuTransportLatitude,
-                longitude: lieuTransportLongitude
-            },
-            lieuLivraison: {
-                latitude: lieuLivraisonLatitude,
-                longitude: lieuLivraisonLongitude
-            },
-            typeMarchandise: formData.typeMarchandise,
-            poids: formData.poids,
-            descriptionMarchandise: formData.descriptionMarchandise,
-            descPoids: formData.descPoids,
-            descLieuLivraison: formData.descLieuLivraison,
-            telLivreA: formData.livreA,
-            utilisateur: { id: localStorage.getItem('userId') }
-        };
-    
-        try {
-            const response = await axiosInstance.post(`/user/add-demmande/${localStorage.getItem('userId')}`, demandeData);
-            console.log('Demande créée avec succès:', response.data);
-            setIsOpen(false); // Ferme la popup après la création
-        } catch (error) {
-            console.error('Erreur lors de la création de la demande :', error);
-        }
-    };*/}
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -196,7 +162,7 @@ function Search({ type }) {
             showElement = true;
             break;
         case 'factureC':
-            TableComponent = TableFactureC;
+            TableComponent = role === 'user' ? TableFactureC : TableFactureAdmin;
             showElement = true;
             break;
         case 'utilisateur':
@@ -273,7 +239,7 @@ function Search({ type }) {
                     <div className="commande_container">
                         <h1>Listes des commandes</h1>
 
-                        <button className="reload">
+                        <button className="reload" onClick={() => window.location.reload()}>
                             <TfiReload  className="reload_icon"/>
                             <h2>Actualiser</h2>
                         </button>
@@ -386,6 +352,14 @@ function Search({ type }) {
                     </div>
                     <TableHistorique /></>
                     
+                )}
+
+                {type === 'factureC' && role ==='admin' && showElement && !showDetails &&(
+                    <>
+                    <div className="facture-container">
+                        <h1>Listes des factures émises</h1>
+                    </div>
+                    </>
                 )}
 
 

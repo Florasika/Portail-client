@@ -1,0 +1,257 @@
+/*-------------------parametres---------------------*/
+
+.profile-settings {
+    font-family: Arial, sans-serif;
+    max-width: 1400px;
+    border: none;
+    height: 620px;
+    margin: auto;
+    padding: 20px;
+    background: #f1f1f1;
+  }
+
+  .save-btn {
+    background-color: #b0324a;
+    margin: 20px 0 10px 1050px;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  
+
+  .content{
+    background: none;
+    border: none;
+  }
+  /*----------------profil-----------------------*/
+  .profil{
+    width: 1150px;
+    background: none;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .theme-section p{
+    background: none;
+    font-size: 15px;
+  }
+
+  .theme-toggle{
+    background: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .notifications-section p{
+    background: none;
+    font-size: 15px;
+  }
+
+ 
+  .theme-section, .notifications-section, .profile-information, .footer {
+    background: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .switch {
+    display: flex;
+    align-items: center;
+    background: none;
+  }
+  
+  .switch input {
+    display: none;
+  }
+ 
+  .switch .slider {
+    position: relative;
+    width: 50px;
+    height: 24px;
+    background-color: #555555;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  
+  .switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+    left: 4px;
+    bottom: 3px;
+  }
+  
+  input:checked + .slider {
+    background-color: #000;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .profile-information {
+    border-top: 2px solid #555555;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-bottom: 1px solid #555555;
+  }
+  
+  .profile-information h3 {
+    margin: -10px;
+    color: #7c7c7c;
+  }
+  
+  .form-groupe {
+    display: grid;
+    background: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: -180px;
+  }
+  
+  .form-groupe input {
+    padding: 10px;
+    border: 1px solid #000;
+    background: none;
+    color: #000;
+    border-radius: 5px;
+  }
+  
+  .profile-image1 {
+    display: flex;
+    align-items: center;
+    background: none;
+  }
+  
+  .profile-image1 img {
+    width: 90px;
+    height: 90px;
+    margin-left: 10px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .image-actions {
+    display: flex;
+    gap: 10px;
+    background: none;
+    position: fixed;
+  }
+ 
+  .image-actions button{
+    width: 110px;
+    height: 30px;
+    margin-left: -230px;
+    margin-top: 110px;
+  }
+  .image-actions .edit-btn{
+    background-color: #FCA7A7;
+    color: #000;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .image-actions .delete-btn {
+    background-color: #FCA7A7;
+    color: #000;
+    padding: 8px 5px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+
+  /*footer*/
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .privacy-section{
+    max-width: 45%;
+    background: none;
+    position: relative;
+    margin: 20px 0 0 -10px;
+    display: flex; /* Utiliser Flexbox */
+    justify-content: space-between; /* Espacer le contenu */
+    align-items: center; /* Centrer verticalement */
+  }
+
+
+  .faq-section {
+    width: 55%;
+    background: none;
+    border-left: 1px solid #555555;
+    padding-left: 15px;
+  }
+  
+  .privacy-section h3 {
+    margin-top: -100px;
+    width: 100%;
+  }
+
+  .privacy-section p{
+    width: 420px;
+    margin-left: -280px;
+    background: none;
+  }
+
+  .privacy-section .switch {
+    margin-left: 30px; 
+    margin-right: 20px;/* Un petit espace entre le texte et le switch */
+  }
+
+  .faq-section h3 {
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+  
+  .question {
+    background: none;
+    margin-top: -40px;
+    margin-left: 10px;
+    background: none;
+    padding: 10px 0;
+  }
+
+  .question p{
+    background: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .more-info {
+    text-align: right;
+    background: none;
+    margin-top: 20px;
+  }
+  
+  .more-info a {
+    color: #000;
+    font-size: 12px;
+    text-decoration: underline;
+    background: none;
+  }
+
+  
+
+
+  
+  

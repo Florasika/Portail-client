@@ -1,0 +1,96 @@
+/* demandeDetails.css */
+.popupDetails {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fff; 
+    opacity: 80%;
+    backdrop-filter: blur(4px); /* Ajoute un flou sur l'arrière-plan */
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2),
+                0 0 5px rgba(0, 0, 0, 0.2),
+                0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; /* Ajuste la position du bouton */
+    right: 10px; /* Ajuste la position du bouton */
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 30px; 
+    width: 30px; 
+    background: #000;
+    border: none;
+    border-radius: 20%; 
+    cursor: pointer;
+    color: #fff;
+   
+}
+
+.popup-content h2{
+    background: none;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.detail-container{
+    padding: 10px;
+    background: none;
+    justify-content: space-between;
+    border: none;
+    border-radius: none;
+}
+
+.detail-row {
+    display: flex;
+    background: none;
+    justify-content: space-between; /* Aligne les groupes de manière égale sur la ligne */
+    margin-bottom: 25px; /* Espacement entre les lignes */
+}
+
+.detail-group {
+    flex: 1; /* Chaque groupe occupe une largeur égale */
+    display: flex; /* Utilise flexbox pour aligner le label et le p sur la même ligne */
+    align-items: center; /* Aligne verticalement le label et le p */
+    margin-right: 30px; 
+    background: none;/* Espacement à droite de chaque groupe */
+}
+
+/* Supprimez la marge droite du dernier groupe pour éviter un espace supplémentaire */
+.detail-group:last-child {
+    margin-right: 0;
+}
+
+.detail-group label {
+    font-weight: bold;
+    background: none;
+    font-size: 22px;
+    margin-right: 10px; /* Espacement entre le label et le p */
+    white-space: nowrap; /* Empêche le retour à la ligne du label */
+}
+
+.detail-group p {
+    margin-top: 2px;
+    background: none;
+    font-size: 18px;
+}
+
+
+

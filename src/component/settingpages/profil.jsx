@@ -3,12 +3,9 @@ import './profil.css';
 import Sidebar from "../Sidebar/Sidebar";
 import Menu from "../Menu/Menu";
 import Parametres from "../AdminPages/AdminParametre/parametre";
+import ParametresUser from "../ParametresUser/ParametresUser";
 
-function Profil ({type}) {
-
-    const [showDetails, setShowDetails] = useState(false);
-    const [role, setRole] = useState('admin');
-    
+function Profil ({type, role}) {
 
     const showElement = type === 'parametres' && role === 'admin';
     return(
@@ -18,7 +15,7 @@ function Profil ({type}) {
             <Sidebar role={role} />
 
            <div className="card">
-           {showElement && <Parametres />}
+           {role === 'admin' ? <Parametres /> : <ParametresUser />}
            </div>
 
         </div>

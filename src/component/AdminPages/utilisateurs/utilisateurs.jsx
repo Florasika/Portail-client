@@ -6,12 +6,12 @@ import './utilisateurs.css';
 const TableUtilisateurs = () => {
     
     const rows = [
-        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi', etat: 'actif', role: "aucun"},
-        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi', etat: 'desactif', role: "aucun"},
-        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi', etat: 'actif', role: "aucun"},
-        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi', etat: 'desactif', role: "aucun"},
-        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi', etat: 'actif', role: "aucun"},
-        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi', etat: 'inactif', role: "aucun"},
+        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi',  role: "aucun"},
+        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi', role: "aucun"},
+        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi', role: "aucun"},
+        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi',  role: "admin"},
+        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi',  role: "aucun"},
+        { nom: 'KOSSI', prenoms: "Koffi", motDePasse: 'Kossikoffi',  role: "aucun"},
     ];   
     
     return(
@@ -22,7 +22,6 @@ const TableUtilisateurs = () => {
                         <TableCell className='cell-user-head'>Nom</TableCell>
                         <TableCell className='cell-user-head'>Prénoms</TableCell>
                         <TableCell className='cell-user-head'>Mot de passe</TableCell>
-                        <TableCell className='cell-user-head'>Etat</TableCell>
                         <TableCell className='cell-user-head'>Rôle</TableCell>
                     </TableRow>
                 </TableHead>
@@ -33,12 +32,8 @@ const TableUtilisateurs = () => {
                             <TableCell className='cell-user-body'>{row.nom}</TableCell>
                             <TableCell className='cell-user-body'>{row.prenoms}</TableCell>
                             <TableCell className='cell-user-body'>{row.motDePasse}</TableCell>
-                            <TableCell className='cell-user-body'>{row.etat}</TableCell>
                             <TableCell className='cell-user-body'>{row.role}</TableCell>
                             <TableCell className='cell-user-body'>
-                                <button className="actions">
-                                    {row.etat === 'actif' ? 'Bloquer' : 'Débloquer'}
-                                </button>
                                 <a href="">
                                     <MdDelete className='delete-icon'/>
                                 </a>

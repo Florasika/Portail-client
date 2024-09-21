@@ -54,29 +54,7 @@
     display: flex;
 }
 
-.cell-user-body button{
-    left: 10px;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    top: -2px;
-}
 
-.actions{
-    background: #FCA7A7;
-    width: 100px;
-    height: auto;
-    border: none;
-    border-radius: 15px;
-    font-size: 15px;
-    padding: 5px;
-    position: fixed;
-    margin-left: -90px;
-    color: #000;
-    font-family: "Inter", sans-serif;
-    cursor: pointer;
-    outline: none;
-}
 
 .cell-user-body a{
     display: flex;
@@ -85,10 +63,10 @@
     border: none;
     padding: 5px;
     position: fixed; 
-    margin-top: -30px;
+    margin-top: -15px;
     background: none;
     cursor: pointer;
-    margin-left: 55px; /* Ajuste l'espace entre le bouton et l'icône */
+    margin-left: 5px; /* Ajuste l'espace entre le bouton et l'icône */
 }
 
 .cell-user-body .delete-icon{

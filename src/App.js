@@ -38,7 +38,8 @@ function App() {
         <Route path='/commande' element={<Search type="commande" />} />
         <Route path='/facture_client' element={<Search type="factureC" />} />
         <Route path='/utilisateurs' element={<Search type="utilisateur"/>} />
-        <Route path='/parametre' element={<Profil type="parametres"/>} />
+        <Route path='/parametreAdmin' element={<Profil type="parametres" role="admin" />} />
+        <Route path='/parametreUser' element={<Profil type="parametres" role="user" />} />
         <Route path='/parametreUser' element={<Profil type="parametres"/>} />
         <Route path='/' element={<Login />} />
       </Routes>
