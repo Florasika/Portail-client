@@ -51,7 +51,7 @@ const TableFactureAdmin = () => {
             dateEmission: '22-07-24',
             clientName: 'John Doe',
            
-        }
+        },
     
     
 ];

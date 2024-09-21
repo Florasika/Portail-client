@@ -9,9 +9,13 @@
 .table-user{
     margin: 250px 270px; 
     max-width: 1180px;
+    max-height: 500px;
     position: fixed;
     border-radius: 8px;
-    overflow: hidden;
+    overflow-y: auto; /* Permet le défilement vertical */
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    -ms-overflow-style: none; /* Masquer la barre de défilement sur IE et Edge */
+    scrollbar-width: none;
     background: #fff;
     border-collapse: collapse;
 }
@@ -62,11 +66,11 @@
     align-items: center;
     border: none;
     padding: 5px;
-    position: fixed; 
+    position: relative; 
     margin-top: -15px;
     background: none;
     cursor: pointer;
-    margin-left: 5px; /* Ajuste l'espace entre le bouton et l'icône */
+    left: -50px; /* Ajuste l'espace entre le bouton et l'icône */
 }
 
 .cell-user-body .delete-icon{

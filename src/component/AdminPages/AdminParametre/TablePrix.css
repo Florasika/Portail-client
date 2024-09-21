@@ -4,6 +4,10 @@
   max-width: 1100px;
   width: 100%;
   background: none;
+  overflow-y: auto; /* Permet le défilement vertical */
+  overflow-x: hidden; /* Empêche le défilement horizontal */
+  -ms-overflow-style: none; /* Masquer la barre de défilement sur IE et Edge */
+  scrollbar-width: none;
   padding: 10px;
   align-items: center;
   display: flex;
