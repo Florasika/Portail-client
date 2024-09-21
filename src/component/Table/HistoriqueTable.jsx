@@ -5,12 +5,12 @@ import { MdDelete } from "react-icons/md";
 
 const TableHistorique = () => {
     const rows = [
-        { facture: 'N°1253', datePaiement: '15-05-24', methode: 'Carte' },
-        { facture: 'N°1253', datePaiement: '15-05-24', methode: 'Carte' },
-        { facture: 'N°1253', datePaiement: '15-05-24', methode: 'Espèces' },
-        { facture: 'N°1253', datePaiement: '15-05-24', methode: 'Carte' },
-        { facture: 'N°1253', datePaiement: '15-05-24', methode: 'Carte' },
-        { facture: 'N°1253', datePaiement: '15-05-24', methode: 'Espèces' },
+        { facture: 'N°1253', datePaiement: '15-05-24',montant: '400 000Fcfa',  },
+        { facture: 'N°1253', datePaiement: '15-05-24',montant: '400 000Fcfa', },
+        { facture: 'N°1253', datePaiement: '15-05-24',montant: '400 000Fcfa', },
+        { facture: 'N°1253', datePaiement: '15-05-24',montant: '400 000Fcfa', },
+        { facture: 'N°1253', datePaiement: '15-05-24',montant: '400 000Fcfa',},
+        { facture: 'N°1253', datePaiement: '15-05-24',montant: '400 000Fcfa', },
     ];
 
     return (
@@ -26,7 +26,7 @@ const TableHistorique = () => {
                     <TableRow className="historique-row-head">
                         <TableCell className="historique-cell-head">Facture</TableCell>
                         <TableCell className="historique-cell-head">Date Paiement</TableCell>
-                        <TableCell className="historique-cell-head">Méthode</TableCell>
+                        <TableCell className="historique-cell-head">Montant payé</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody className="historique-body">
@@ -34,7 +34,7 @@ const TableHistorique = () => {
                         <TableRow key={index} className="historique-row-body">
                             <TableCell className="cell-body">{row.facture}</TableCell>
                             <TableCell className="cell-body">{row.datePaiement}</TableCell>
-                            <TableCell className="cell-body">{row.methode}</TableCell>
+                            <TableCell className="cell-body">{row.montant}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

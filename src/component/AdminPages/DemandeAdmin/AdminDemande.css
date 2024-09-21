@@ -8,10 +8,14 @@
 
 .table-container {
     margin: 350px 270px; 
+    max-height: 360px;
     max-width: 1180px;
     position: fixed;
     border-radius: 8px;
-    overflow: hidden;
+    overflow-y: auto; /* Permet le défilement vertical */
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    -ms-overflow-style: none; /* Masquer la barre de défilement sur IE et Edge */
+    scrollbar-width: none;
     background: #fff;
 }
 

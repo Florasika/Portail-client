@@ -30,6 +30,27 @@ const TableFactureAdmin = () => {
             dateEmission: '22-07-24',
             clientName: 'John Doe',
            
+        },
+        {
+            marchandise: "23562",
+            montant: '500 000Fcfa',
+            dateEmission: '22-07-24',
+            clientName: 'John Doe',
+           
+        },
+        {
+            marchandise: "23562",
+            montant: '500 000Fcfa',
+            dateEmission: '22-07-24',
+            clientName: 'John Doe',
+           
+        },
+        {
+            marchandise: "23562",
+            montant: '500 000Fcfa',
+            dateEmission: '22-07-24',
+            clientName: 'John Doe',
+           
         }
     
     

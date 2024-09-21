@@ -110,7 +110,26 @@ const TableFactureC = () => {
             bank: 'TG1234567890123456' // Numéro de compte bancaire
         },
         total: '400 000Fcfa'
-    }
+    },
+    {
+        number: '120536',
+        marchandise: "marchandise1",
+        montant: '400 000Fcfa',
+        dateEmission: '22-07-24',
+        clientName: 'John Doe',
+        clientAddress: '123 Rue, Lomé',
+        items: [
+            { description: 'Marchandise 1', price: 100000, quantity: 1 },
+            { description: 'Marchandise 4', price: 300000, quantity: 1 }
+        ],
+        paymentInfo: {
+            tmoney: '+22812345678', // Numéro de téléphone togolais
+            flooz: '+22887654321',  // Numéro de téléphone togolais
+            bank: 'TG1234567890123456' // Numéro de compte bancaire
+        },
+        total: '400 000Fcfa'
+    },
+
 ];
 
 

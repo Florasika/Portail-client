@@ -309,6 +309,26 @@ function Search({ type }) {
                             <SlOptions className='option'/>
                             </div>
                         </div>
+                        <div className="notif-item">
+                            <div className="notif-left">
+                                <div className="notif-icon"></div>
+                            </div>
+                            <div className="notif-content">
+                            <div className="notif-header">
+                                <span className="notif-title">Marchandise</span>
+                                <span className="time">2min</span>
+                            </div>
+                            <div className="notif-body">
+                                Lorem ipsum dolor sit amet consectetur. Nulla commodo sit tellus ipsum sem eu eu aenean.
+                            </div>
+                            <div className="notif-footer">
+                                <a href="#" className="notif-link">En savoir plus</a>
+                            </div>
+                            </div>
+                            <div className="notif-options">
+                            <SlOptions className='option'/>
+                            </div>
+                        </div>
 
 
                         

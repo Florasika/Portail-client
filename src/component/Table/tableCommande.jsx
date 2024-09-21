@@ -19,6 +19,7 @@ const TableCommande = () => {
                         <TableCell className="cell_head">Transport</TableCell>
                         <TableCell className="cell_head">Type de marchandise</TableCell>
                         <TableCell className="cell_head">Date de départ</TableCell>
+                        <TableCell className="cell_head">Actions</TableCell>
                     </TableRow>
                 </TableHead>
 

@@ -9,11 +9,15 @@
 .admin-commande{
     margin: 250px 270px; 
     max-width: 1180px;
+    height: 400px;
+    overflow-y: auto; /* Permet le défilement vertical */
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    -ms-overflow-style: none; /* Masquer la barre de défilement sur IE et Edge */
+    scrollbar-width: none; /* Masquer la barre de défilement sur Firefox */
     position: fixed;
     border-radius: 8px;
-    overflow: hidden;
     background: #fff;
-    border-collapse: collapse;
+
 }
 
 .table-root{
@@ -53,6 +57,7 @@
     background: #fff;
     display: flex;
     align-items: center;
+    justify-content: space-between;
      /* Assure que les éléments sont répartis entre les deux extrémités */
 }
 
@@ -110,15 +115,14 @@
 
 .cell_body1 a{
     display: flex;
-    justify-content: flex-end; /* Place l'icône à droite */
-    align-items: center;
     border: none;
     padding: 5px;
-    position: fixed; 
+    position: relative; 
     margin-top: -30px;
+    
     background: none;
     cursor: pointer;
-    margin-left: 220px; /* Ajuste l'espace entre le bouton et l'icône */
+    left: 220px; /* Ajuste l'espace entre le bouton et l'icône */
 }
 
 .cell_body1 .delete-icon{
