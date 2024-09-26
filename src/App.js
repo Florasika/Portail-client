@@ -26,7 +26,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from '../src/Login/Login.jsx';
 import Search from "../src/component/Search/Search.jsx";
 import Profil from "../src/component/settingpages/profil.jsx";
-
+import SignUp from "../src/SignUp/Sign.jsx";
 
 
 
@@ -41,7 +41,8 @@ function App() {
         <Route path='/parametreAdmin' element={<Profil type="parametres" role="admin" />} />
         <Route path='/parametreUser' element={<Profil type="parametres" role="user" />} />
         <Route path='/parametreUser' element={<Profil type="parametres"/>} />
-        <Route path='/' element={<Login />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<SignUp />} />
       </Routes>
     </div>
   );
