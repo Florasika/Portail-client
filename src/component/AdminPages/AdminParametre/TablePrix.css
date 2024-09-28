@@ -1,43 +1,55 @@
 .table-prix {
-  margin: 20px;
+  margin: 40px 0 0;
   border: 1px solid #ddd;
 }
 
 .root-prix {
   width: 100%;
+  background: #fff;
 }
 
 .table-head-prix {
-  background-color: #f0f0f0;
+  background-color: #fff;
 }
 
 .row-head-prix {
   font-weight: bold;
+  background: #fff;
 }
 
 .cell-head-prix, .cell-prix {
   padding: 8px 16px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #d9d9d9;
+  background: #fff;
 }
 
 .table-body-prix .table-row-prix:nth-of-type(odd) {
-  background-color: #fafafa;
+  background-color: #fff;
 }
 
-.update-btn, .delete-btn {
-  background-color: #ffcccc;
-  color: #ff0000;
+
+.cell-prix button{
+  position: fixed;
+  margin: 0 0 0 200px;
+  width: 110px;
+}
+.cell-prix .update-btn{
+  background-color: #FCA7A7;
+  color: #000;
   border: none;
-  padding: 5px 10px;
+  padding: 8px 0 8px;
   border-radius: 5px;
-  margin: 2px;
+  margin: -20px 0 0 -90px;
   cursor: pointer;
 }
 
-.update-btn:hover, .delete-btn:hover {
-  background-color: #ff9999;
+.cell-prix .delete-btn {
+  background-color: #FCA7A7;
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: -20px 0 0 50px;
+  cursor: pointer;
 }
 
-.update-btn {
-  margin-right: 5px;
-}

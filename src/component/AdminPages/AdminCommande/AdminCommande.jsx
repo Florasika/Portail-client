@@ -1,35 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdDelete } from "react-icons/md";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import './AdminCommande.css';
+import axiosInstance from '../../../axios';
+
+// Fonction pour formater les dates
+const formatDate = (dateArray) => {
+    if (!dateArray) return 'Pas de date'; // Gérer les dates nulles
+
+    if (Array.isArray(dateArray) && dateArray.length >= 6) {
+        const [year, month, day, hours, minutes, seconds, nanoseconds] = dateArray;
+
+        // Créer un objet Date en utilisant ces valeurs
+        const date = new Date(year, month - 1, day, hours, minutes, seconds, Math.floor(nanoseconds / 1000000));
+
+        // Vérifier si la date est valide
+        if (isNaN(date.getTime())) {
+            return 'Date invalide'; // Gérer les dates invalides
+        }
+
+        // Formater la date et l'heure
+        return date.toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        }) + ' ' + date.toLocaleTimeString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+    }
+
+    return 'Date invalide'; // Gérer les cas imprévus
+};
 
 const AdminCommande = () => {
+    const [commandes, setCommandes] = useState([]);  // État pour stocker les commandes
     const [selectedRow, setSelectedRow] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [dialogAction, setDialogAction] = useState('');
     const [showDetails, setShowDetails] = useState(false);
 
-    const handlePopupOpen = () => setIsPopupOpen(true);
-    const handlePopupClose = () => setIsPopupOpen(false);
-
-    const rows = [
-        { nomClient: 'KOSSI', marchandise: "N°25641", dateDepart: '21-10-23', dateLivraison: '25-11-23', statut: "pink" },
-        { nomClient: 'KOSSI', marchandise: "N°25641", dateDepart: '21-10-23', dateLivraison: '25-11-23', statut: "coffee" },
-        { nomClient: 'KOSSI', marchandise: "N°25641", dateDepart: '------', dateLivraison: '25-11-23', statut: "blue" },
-        { nomClient: 'KOSSI', marchandise: "N°25641", dateDepart: '21-10-23', dateLivraison: '25-11-23', statut: "coffee" },
-        { nomClient: 'KOSSI', marchandise: "N°25641", dateDepart: '21-10-23', dateLivraison: '------', statut: "pink" },
-        { nomClient: 'KOSSI', marchandise: "N°25641", dateDepart: '21-10-23', dateLivraison: '25-11-23', statut: "pink" },
-    ];
+    // Utiliser useEffect pour appeler l'API dès que le composant est monté
+    useEffect(() => {
+        axiosInstance.get('/admin/all-commande')
+            .then((response) => {
+                setCommandes(response.data);  // Mettre à jour les commandes avec la réponse de l'API
+            })
+            .catch((error) => {
+                console.error('Erreur lors de la récupération des commandes:', error);
+            });
+    }, []);
 
     const handleDetailsClick = (row) => {
         setSelectedRow(row);
         setShowDetails(true);
     };
 
-    const handleCloseDetails = () => {
-        setSelectedRow(null);
-        setShowDetails(false);
-    };
+    const handlePopupOpen = () => setIsPopupOpen(true);
+    const handlePopupClose = () => setIsPopupOpen(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,7 +67,7 @@ const AdminCommande = () => {
     const getButtonLabel = () => {
         if (!selectedRow) return '';
 
-        const hasDateDepart = selectedRow.dateDepart && selectedRow.dateDepart !== '------';
+        const hasDateDepart = selectedRow.dateCommande && selectedRow.dateCommande !== '------';
         const hasDateLivraison = selectedRow.dateLivraison && selectedRow.dateLivraison !== '------';
 
         if (!hasDateLivraison) {
@@ -58,12 +85,12 @@ const AdminCommande = () => {
                 <div className="details-container">
                     <h2>Détails du client</h2>
                     <div className="details-row">
-                        <p><strong>Nom du client:</strong> {selectedRow.nomClient}</p>
-                        <p><strong>Marchandise:</strong> {selectedRow.marchandise}</p>
+                        <p><strong>Nom du client:</strong> {selectedRow.commandeDe}</p>
+                        <p><strong>Marchandise:</strong> {selectedRow.numeroMarchandise}</p>
                     </div>
                     <div className="details-row">
-                        <p><strong>Date de départ:</strong> {selectedRow.dateDepart}</p>
-                        <p><strong>Date de livraison:</strong> {selectedRow.dateLivraison}</p>
+                        <p><strong>Date de Commande:</strong> {formatDate(selectedRow.dateCommande)}</p>
+                        <p><strong>Date de livraison:</strong> {formatDate(selectedRow.dateLivraison)}</p>
                     </div>
                     <p className='statut'><strong>Statut:</strong> {selectedRow.statut}</p>
                     <button
@@ -73,14 +100,13 @@ const AdminCommande = () => {
                         {getButtonLabel()}
                     </button>
 
-                    {/* Dialog */}
+                    {/* Popup Dialog */}
                     {isPopupOpen && (
                         <div className="custom-dialog">
                             <div className="custom-dialog-title">Entrez la date de la livraison</div>
                             <div className="custom-dialog-content">
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-row">
-                                        
                                         <div className="form-group">
                                             <label htmlFor="deliveryDate">Date de livraison</label>
                                             <input
@@ -96,7 +122,6 @@ const AdminCommande = () => {
                                         >
                                             Enregistrer
                                         </button>
-                                        
                                     </div>
                                 </form>
                             </div>
@@ -109,23 +134,25 @@ const AdminCommande = () => {
                         <TableHead className='header_table'>
                             <TableRow className='row_head'>
                                 <TableCell className='cell-head'>Nom du client</TableCell>
-                                <TableCell className='cell-head'>Marchandise</TableCell>
-                                <TableCell className='cell-head'>Date de départ</TableCell>
+                                <TableCell className='cell-head'>Numero Marchandise</TableCell>
+                                <TableCell className='cell-head'>Description Marchandise</TableCell>
+                                <TableCell className='cell-head'>Date de Commande</TableCell>
                                 <TableCell className='cell-head'>Date de livraison</TableCell>
                                 <TableCell className='cell-head'>Statut</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody className='body'>
-                            {rows.map((row, index) => (
+                            {commandes.map((row, index) => (
                                 <TableRow key={index} className='row_body'>
-                                    <TableCell className='cell_body1'>{row.nomClient}</TableCell>
-                                    <TableCell className='cell_body1'>{row.marchandise}</TableCell>
-                                    <TableCell className='cell_body1'>{row.dateDepart}</TableCell>
-                                    <TableCell className='cell_body1'>{row.dateLivraison}</TableCell>
+                                    <TableCell className='cell_body1'>{row.commandeDe}</TableCell>
+                                    <TableCell className='cell_body1'>N° {row.numeroMarchandise}</TableCell>
+                                    <TableCell className='cell_body1'>{row.descriptionMarchandise}</TableCell>
+                                    <TableCell className='cell_body1'>{formatDate(row.dateCommande)}</TableCell>
+                                    <TableCell className='cell_body1'>{formatDate(row.dateLivraison)}</TableCell>
                                     <TableCell className='cell_body1'>
                                         <span className={`statu-icon ${row.statut}`}></span>
                                         <button className="details" onClick={() => handleDetailsClick(row)}>Détails</button>
-                                        <a >
+                                        <a>
                                             <MdDelete className='delete-icon' />
                                         </a>
                                     </TableCell>

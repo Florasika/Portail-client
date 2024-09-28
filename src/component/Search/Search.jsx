@@ -22,9 +22,12 @@ function Search({ type }) {
     const [showDetails, setShowDetails] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [isUserPopupOpen, setIsUserPopupOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
     
-    {/*const role = localStorage.getItem('role');*/}
-    const [role, setRole] = useState('user');
+    const role = localStorage.getItem('role');
 
     const [formData, setFormData] = useState({
         lieuTransport: '',
@@ -53,20 +56,30 @@ function Search({ type }) {
 
     const handleUserSubmit = async (e) => {
         e.preventDefault();
-
+    
+        setErrorMessage('');
+        setSuccessMessage('');
+        setIsLoading(true); 
+    
         try {
             const response = await axiosInstance.post('/auth/createUser', userFormData, {
-                timeout: 30000 
+                timeout: 10000,
             });
-
+    
+            // Afficher un message de succès
+            setSuccessMessage('Utilisateur créé avec succès !');
             console.log('Utilisateur créé avec succès:', response.data);
-
-            // Fermer la popup après succès
+    
             setIsUserPopupOpen(false);
         } catch (error) {
+            // Afficher un message d'erreur
+            setErrorMessage("Erreur lors de la création de l'utilisateur : " + (error.response?.data || error.message));
             console.error("Erreur lors de la création de l'utilisateur :", error.response?.data || error.message);
+        } finally {
+            setIsLoading(false); // Fin du chargement
         }
     };
+    
     const [selectedRow, setSelectedRow] = useState(null);
 
     const handleChange = (e) => {
@@ -128,11 +141,11 @@ function Search({ type }) {
 
     switch (type) {
         case 'demande':
-            TableComponent = role === 'user' ? TableDemande : AdminDemande;
+            TableComponent = role === 'USER' ? TableDemande : AdminDemande;
             showElement = true;
             break;
         case 'commande':
-            TableComponent = role === 'user' ? TableCommande : AdminCommande;
+            TableComponent = role === 'USER' ? TableCommande : AdminCommande;
             showElement = true;
             break;
         case 'factureC':
@@ -163,7 +176,7 @@ function Search({ type }) {
                     <RiSearchLine className="search_icon" />
                 </a>
 
-                {type === 'demande' && role === 'user' && showElement && (
+                {type === 'demande' && role === 'USER' && showElement && (
                     <>
                         <div className="status-container">
                             <div className="status-item">
@@ -191,7 +204,7 @@ function Search({ type }) {
                     </>
                 )}
 
-                {type === 'demande' && role === 'admin' && showElement && (
+                {type === 'demande' && role === 'ADMIN' && showElement && (
                     <>
                         <div className="status-container">
                             <div className="status-item">
@@ -211,7 +224,7 @@ function Search({ type }) {
                     </>
                 )}
 
-                {type === 'commande' && role === 'user' && showElement &&(
+                {type === 'commande' && role === 'USER' && showElement &&(
                     <>
                     <div className="commande_container">
                         <h1>Listes des commandes</h1>
@@ -287,15 +300,12 @@ function Search({ type }) {
                             </div>
                         </div>
 
-
-                        
-
                         {/* Répéter les sections comme ci-dessus autant de fois que nécessaire */}
                     </div>
                     </>
                 )}
 
-                {type === 'commande' && role === 'admin' && showElement && !showDetails && (
+                {type === 'commande' && role === 'ADMIN' && showElement && !showDetails && (
                     <>
                         <div className="admin-container">
                             <h1>Listes des commandes</h1>
@@ -322,7 +332,7 @@ function Search({ type }) {
 
             
 
-                {type === 'factureC' && role ==='user' && showElement && !showDetails &&(
+                {type === 'factureC' && role ==='ADMIN' && showElement && !showDetails &&(
                     <>
                     <div className="facture-container">
                         <h1>Listes des factures</h1>
@@ -332,7 +342,7 @@ function Search({ type }) {
                 )}
 
 
-                {type === 'utilisateur' && role === 'admin' && showElement && (
+                {type === 'utilisateur' && role === 'ADMIN' && showElement && (
                     <>
                         <div className="user-container">
                             <button className='search-user'>
@@ -406,7 +416,7 @@ function Search({ type }) {
                                         onChange={handleChange}
                                         required
                                         >
-                                        <option value="">Sélectionnez un type de marchandise</option>
+                                        <option value="">Sélectionnez</option>
                                         <option value="PERISSABLES">Périssables</option>
                                         <option value="NON_PERISSABLES">Non Périssables</option>
                                         <option value="DANGEREUSES">Dangereuses</option>
@@ -465,59 +475,72 @@ function Search({ type }) {
                 )}
 
 {isUserPopupOpen && (
-                <div className="popup">
-                    <h2>Nouveau compte</h2>
-                    <form onSubmit={handleUserSubmit}>
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label htmlFor="nom">Nom</label>
-                                <input
-                                    type="text"
-                                    id="nom"
-                                    value={userFormData.nom}
-                                    onChange={handleUserChange}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="prenom">Prénom</label>
-                                <input
-                                    type="text"
-                                    id="prenom"
-                                    value={userFormData.prenom}
-                                    onChange={handleUserChange}
-                                />
-                            </div>
-                        </div>
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label htmlFor="email">Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    value={userFormData.email}
-                                    onChange={handleUserChange}
-                                />
-                            </div>
-                            <div className="form-group num">
-                                <label htmlFor="num">Numéro</label>
-                                <div className="input-with-icon">
-                                    <input
-                                        type="tel"
-                                        id="tel"
-                                        value={userFormData.tel}
-                                        onChange={handleUserChange}
-                                    />
-                                    <a href="tel:" className="icon-link">
-                                        <MdLocalPhone className="icon" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" className="submit-btn">Soumettre</button>
-                        <button type="button" className="delete-btn" onClick={() => setIsUserPopupOpen(false)}>Annuler</button>
-                    </form>
+    <div className="popup">
+        <h2>Nouveau compte</h2>
+        <form onSubmit={handleUserSubmit}>
+            <div className="form-row">
+                <div className="form-group">
+                    <label htmlFor="nom">Nom</label>
+                    <input
+                        type="text"
+                        id="nom"
+                        value={userFormData.nom}
+                        onChange={handleUserChange}
+                        disabled={isLoading} // Désactiver le champ si chargement en cours
+                    />
                 </div>
-            )}
+                <div className="form-group">
+                    <label htmlFor="prenom">Prénom</label>
+                    <input
+                        type="text"
+                        id="prenom"
+                        value={userFormData.prenom}
+                        onChange={handleUserChange}
+                        disabled={isLoading} // Désactiver le champ si chargement en cours
+                    />
+                </div>
+            </div>
+            <div className="form-row">
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={userFormData.email}
+                        onChange={handleUserChange}
+                        disabled={isLoading} // Désactiver le champ si chargement en cours
+                    />
+                </div>
+                <div className="form-group num">
+                    <label htmlFor="num">Numéro</label>
+                    <div className="input-with-icon">
+                        <input
+                            type="tel"
+                            id="tel"
+                            value={userFormData.tel}
+                            onChange={handleUserChange}
+                            disabled={isLoading} // Désactiver le champ si chargement en cours
+                        />
+                        <a href="tel:" className="icon-link">
+                            <MdLocalPhone className="icon" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" className="submit-btn" disabled={isLoading}>
+                {isLoading ? 'Chargement...' : 'Soumettre'}
+            </button>
+            <button type="button" className="delete-btn" onClick={() => setIsUserPopupOpen(false)} disabled={isLoading}>
+                Annuler
+            </button>
+
+            {/* Afficher les messages de succès ou d'erreur */}
+            {successMessage && <p className="success-message">{successMessage}</p>}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </form>
+    </div>
+)}
+
 
         </div>
         

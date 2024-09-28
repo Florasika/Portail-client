@@ -18,13 +18,18 @@ const Profil = () => {
       reader.readAsDataURL(file);
     }
   };
-  
 
+  const handleEditButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  
+  
   return (
 
     
-    <div className="profile-settings">
-
+    <div className='profil'>
       <div className="theme-section">
         <p>Thème de l'application</p>
         <div className="theme-toggle">
@@ -32,16 +37,17 @@ const Profil = () => {
             <input type="checkbox" onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
             <span className="slider"></span>
           </label>
-          
         </div>
       </div>
 
       <div className="notifications-section">
         <p>Activer les notifications en temps réel</p>
-        <label className="switch">
-          <input type="checkbox" onChange={() => setNotifications(!notifications)} />
-          <span className="slider"></span>
-        </label>
+        <div className="theme-toggle">
+          <label className="switch">
+            <input type="checkbox" onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
+            <span className="slider"></span>
+          </label>
+        </div>
       </div>
 
       <div className="profile-information">
@@ -55,15 +61,16 @@ const Profil = () => {
           <input type="text" placeholder="Rôle" />
         </div>
         <div className="profile-image1">
-          <img src="profile-image-url" alt="Profil" />
+          <img src={profileImage} alt="Profil" />
           <div className="image-actions">
-          <button
-              className="edit-btn"
-              onClick={() => fileInputRef.current.click()}
-            >
-              Modifier
-            </button>
-            <button className="delete-btn">Supprimer</button>
+            <button className="edit-btn" onClick={handleEditButtonClick}>Modifier</button>
+            <button className="delete-btn" onClick={() => setProfileImage('')}>Supprimer</button>
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              onChange={handleFileChange} 
+              style={{ display: 'none' }} 
+            />
           </div>
         </div>
       </div>
@@ -83,6 +90,7 @@ const Profil = () => {
             <p>Questions</p>
             <p>Lorem ipsum dolor sit amet consectetur. Id integer elementum platea urna vel nunc.</p>
           </div>
+
           <div className="question">
             <p>Questions</p>
             <p>Lorem ipsum dolor sit amet consectetur. Id integer elementum platea urna vel nunc.</p>

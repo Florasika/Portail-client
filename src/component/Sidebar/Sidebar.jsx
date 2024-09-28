@@ -50,7 +50,7 @@ const Sidebar = ({ role }) => {
                         Chats
                     </a>
                     
-                    {role === 'admin' && (
+                    {role === 'ADMIN' && (
                         <>
                             <a href="#" className="item">
                                 <ImStatsBars className="icon" />

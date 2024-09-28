@@ -1,48 +1,77 @@
+import React, { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
-import React from "react";
 import { MdDelete } from "react-icons/md";
 import './tableCommande.css';
+import axiosInstance from "../../axios";
 
 const TableCommande = () => {
-    const rows = [
-        { transport: 'Chine', type: 'Elaboré', date:'21-20-23' },
-        { transport: 'Chine', type: 'Elaboré', date:'21-20-23' },
-        { transport: 'Chine', type: 'Elaboré', date:'21-20-23' },
-        { transport: 'Chine', type: 'Elaboré', date:'21-20-23' },
-    ]
+    const [rows, setRows] = useState([]); 
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null); 
 
-    return(
-        <TableContainer component ={Paper} className="table-commande">
-            <Table className="table_root" arial-label="simple table">
+    // Récupérer l'ID utilisateur à partir du localStorage
+    const utilisateurId = localStorage.getItem('userId');
+
+    useEffect(() => {
+        // Vérifier si utilisateurId est valide avant d'appeler l'API
+        if (!utilisateurId) {
+            setError("L'ID utilisateur est manquant.");
+            setLoading(false);
+            return;
+        }
+
+        const fetchCommandes = async () => {
+            try {
+                const response = await axiosInstance.get(`/user/commandeBy-utilisateur/${utilisateurId}`);
+                setRows(response.data); 
+                setLoading(false); 
+            } catch (err) {
+                setError('Erreur lors de la récupération des commandes');
+                setLoading(false); 
+            }
+        };
+
+        fetchCommandes(); // Appel de la fonction lors du montage
+    }, [utilisateurId]);
+
+    if (loading) {
+        return <p>Chargement en cours...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
+    }
+
+    return (
+        <TableContainer component={Paper} className="table-commande">
+            <Table className="table_root" aria-label="simple table">
                 <TableHead className="header_table">
                     <TableRow className="row_head">
                         <TableCell className="cell_head">Transport</TableCell>
                         <TableCell className="cell_head">Type de marchandise</TableCell>
                         <TableCell className="cell_head">Date de départ</TableCell>
+                        <TableCell className="cell_head">Actions</TableCell>
                     </TableRow>
                 </TableHead>
 
                 <TableBody className="body">
                     {rows.map((row, index) => (
-                        <TableRow className="row_body">
+                        <TableRow key={index} className="row_body">
                             <TableCell className="cell_body">{row.transport}</TableCell>
-                            <TableCell className="cell_body">{row.type}</TableCell>
+                            <TableCell className="cell_body">{row.typeMarchandise}</TableCell>
                             <TableCell className="cell_body">{row.date}</TableCell>
                             <TableCell className="cell_body">
                                 <button className="livrer">Livré</button>
-                                <a href="">
-                                 <MdDelete className='delete-icon'/>
-                                </a>
+                                <IconButton>
+                                    <MdDelete className="delete-icon" />
+                                </IconButton>
                             </TableCell>
-
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
-            
         </TableContainer>
+    );
+};
 
-        
-    )
-}
 export default TableCommande;
