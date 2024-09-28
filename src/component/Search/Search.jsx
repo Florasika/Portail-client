@@ -15,6 +15,7 @@ import TableUtilisateurs from '../AdminPages/utilisateurs/utilisateurs';
 import AdminCommande from '../AdminPages/AdminCommande/AdminCommande';
 import AdminDemande from '../AdminPages/DemandeAdmin/AdminDemande';
 import axiosInstance from '../../axios';
+import TableFactureAdmin from '../AdminPages/AdminFacture/FactureAdmin';
 
 
 
@@ -100,14 +101,14 @@ function Search({ type }) {
         setShowDetails(false);
     };
 
-    // Fonction pour soumettre la demande
     const handleSubmit = async (e) => {
         e.preventDefault();
     
+        // Extraire les coordonnées et les convertir en float
         const [lieuTransportLatitude, lieuTransportLongitude] = formData.lieuTransport.split(',').map(coord => parseFloat(coord.trim()));
-    
         const [lieuLivraisonLatitude, lieuLivraisonLongitude] = formData.lieuLivraison.split(',').map(coord => parseFloat(coord.trim()));
     
+        // Créer les données de la demande
         const demandeData = {
             lieuTransport: {
                 latitude: lieuTransportLatitude,
@@ -123,17 +124,42 @@ function Search({ type }) {
             descPoids: formData.descPoids,
             descLieuLivraison: formData.descLieuLivraison,
             telLivreA: formData.livreA,
-            utilisateur: { id: localStorage.getItem('userId') }
+            utilisateur: { id: localStorage.getItem('userId') } // Utilisateur connecté
         };
     
         try {
-            const response = await axiosInstance.post(`/user/add-demmande/${localStorage.getItem('userId')}`, demandeData);
+            // Ajouter l'en-tête Authorization avec le token
+            const token = localStorage.getItem('token'); // Assure-toi que le token est stocké
+    
+            const response = await axiosInstance.post(
+                `/user/add-demmande/${localStorage.getItem('userId')}`, 
+                demandeData, 
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Ajouter le token à l'en-tête
+                        'Content-Type': 'application/json' // Assurer que le type de contenu est correct
+                    }
+                }
+            );
+    
             console.log('Demande créée avec succès:', response.data);
             setIsOpen(false); // Ferme la popup après la création
+    
         } catch (error) {
-            console.error('Erreur lors de la création de la demande :', error);
+            if (error.response) {
+                // Réponse reçue avec un code d'erreur (comme 403, 500, etc.)
+                console.error('Erreur lors de la création de la demande :', error.response.data);
+                alert(`Erreur: ${error.response.data.message || 'Erreur inconnue'}`);
+            } else if (error.request) {
+                // La requête a été envoyée mais aucune réponse n'a été reçue
+                console.error('Aucune réponse reçue du serveur:', error.request);
+            } else {
+                // Une erreur s'est produite lors de la configuration de la requête
+                console.error('Erreur lors de la configuration de la requête :', error.message);
+            }
         }
     };
+    
     
 
     let TableComponent = null;
@@ -149,7 +175,7 @@ function Search({ type }) {
             showElement = true;
             break;
         case 'factureC':
-            TableComponent = TableFactureC;
+            TableComponent = role === 'user' ? TableFactureC : TableFactureAdmin;
             showElement = true;
             break;
         case 'utilisateur':
@@ -216,9 +242,6 @@ function Search({ type }) {
                                 <span className="status-text">En attente</span>
                             </div>
                         </div>
-                        <button className='search-button'>
-                            Approuver
-                        </button>
                         <h1>Listes des demandes des clients</h1>
                         {/* Ajoutez ici d'autres parties spécifiques à l'admin */}
                     </>
@@ -229,7 +252,7 @@ function Search({ type }) {
                     <div className="commande_container">
                         <h1>Listes des commandes</h1>
 
-                        <button className="reload">
+                        <button className="reload" onClick={() => window.location.reload()}>
                             <TfiReload  className="reload_icon"/>
                             <h2>Actualiser</h2>
                         </button>
@@ -299,6 +322,26 @@ function Search({ type }) {
                             <SlOptions className='option'/>
                             </div>
                         </div>
+                        <div className="notif-item">
+                            <div className="notif-left">
+                                <div className="notif-icon"></div>
+                            </div>
+                            <div className="notif-content">
+                            <div className="notif-header">
+                                <span className="notif-title">Marchandise</span>
+                                <span className="time">2min</span>
+                            </div>
+                            <div className="notif-body">
+                                Lorem ipsum dolor sit amet consectetur. Nulla commodo sit tellus ipsum sem eu eu aenean.
+                            </div>
+                            <div className="notif-footer">
+                                <a href="#" className="notif-link">En savoir plus</a>
+                            </div>
+                            </div>
+                            <div className="notif-options">
+                            <SlOptions className='option'/>
+                            </div>
+                        </div>
 
                         {/* Répéter les sections comme ci-dessus autant de fois que nécessaire */}
                     </div>
@@ -339,6 +382,14 @@ function Search({ type }) {
                     </div>
                     <TableHistorique /></>
                     
+                )}
+
+                {type === 'factureC' && role ==='admin' && showElement && !showDetails &&(
+                    <>
+                    <div className="facture-container">
+                        <h1>Listes des factures émises</h1>
+                    </div>
+                    </>
                 )}
 
 

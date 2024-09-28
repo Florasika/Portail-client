@@ -137,7 +137,8 @@
     font-family: Arial, sans-serif;
     font-size: 16px;
     color: #000;
-    margin-left: -20px;
+    margin-left: -100px;
+    margin-top: -2px;
 }
 
 
@@ -292,11 +293,15 @@
 
 /*--------------------Notifications-----------------*/
 .notif-list{
-    width: 400px;
-    height: 82vh;
+    width: 90%; /* Utilise un pourcentage pour s'adapter à différentes tailles d'écran */
+    max-width: 400px; /* Limite la largeur maximale */
+    height: 550px;
     border-radius: 15px;
-    margin-left: 750px;
-    margin-top: 20px;
+    overflow-y: auto; /* Permet le défilement vertical */
+    overflow-x: hidden;
+    -ms-overflow-style: none;  /* Masquer la barre de défilement sur IE et Edge */
+    scrollbar-width: none;
+    margin: 50px 750px;
     position: fixed;
     background: #fff;
     box-sizing: border-box;
@@ -306,7 +311,7 @@
     font-size: 20px;
     font-weight: bold;
     color: #000;
-    margin: -220px 10px;
+    margin: -190px 10px;
 }
 
 .notif-item {

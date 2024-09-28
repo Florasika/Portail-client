@@ -24,8 +24,6 @@ const TableFactureC = () => {
         setSelectedInvoice(null);
     };
 
-    // Fonction pour récupérer les factures de l'utilisateur depuis l'API
-
     const utilisateurId = localStorage.getItem('userId');
 
     useEffect(() => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper } from '@mui/material';
 import './TablePrix.css';
 
-const TablePrix = ({ data, onDelete, onUpdate }) => {
+const TablePrix = ({ data = [], onDelete, onUpdate }) => {
   return (
     <TableContainer component={Paper} className="table-prix">
       <Table className="root-prix" aria-label="simple table">
@@ -15,27 +15,35 @@ const TablePrix = ({ data, onDelete, onUpdate }) => {
           </TableRow>
         </TableHead>
         <TableBody className="table-body-prix">
-          {data.map((row, index) => (
-            <TableRow key={index} className="table-row-prix">
-              <TableCell className="cell-prix">{row.type}</TableCell>
-              <TableCell className="cell-prix">{row.kg}</TableCell>
-              <TableCell className="cell-prix">{row.price}</TableCell>
-              <TableCell className="cell-prix">
-                <button 
-                  className="update-btn"
-                  onClick={() => onUpdate(index)}
-                >
-                  Update
-                </button>
-                <button 
-                  className="delete-btn"
-                  onClick={() => onDelete(index)}
-                >
-                  Supprimer
-                </button>
+          {data.length > 0 ? (
+            data.map((row, index) => (
+              <TableRow key={index} className="table-row-prix">
+                <TableCell className="cell-prix">{row.type}</TableCell>
+                <TableCell className="cell-prix">{row.kg}</TableCell>
+                <TableCell className="cell-prix">{row.price}</TableCell>
+                <TableCell className="cell-prix">
+                  <button 
+                    className="update-btn"
+                    onClick={() => onUpdate(index)}
+                  >
+                    Update
+                  </button>
+                  <button 
+                    className="delete-btn"
+                    onClick={() => onDelete(index)}
+                  >
+                    Supprimer
+                  </button>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={4} className="cell-prix">
+                Aucune donnée disponible
               </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

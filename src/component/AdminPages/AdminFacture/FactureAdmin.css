@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.invoice-c {
+    max-width: 1100px;
+    margin: 230px 270px;
+    height: 350px;
+    border-radius: 8px;
+    background: #fff;
+    overflow-y: auto; /* Permet le défilement vertical */
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    -ms-overflow-style: none; /* Masquer la barre de défilement sur IE et Edge */
+    scrollbar-width: none;
+    border-collapse: collapse;
+    position: fixed;
+}
+  
+.invoice-table-r {
+    vertical-align: middle;
+    border-collapse: collapse;
+    background: #fff;
+}
+  
+.invoice-h {
+    background-color: #fff;
+}
+  
+.invoice-row-h  {
+    border-bottom: 1.5px solid #8E8E8E;
+    font-weight: 400;
+    font-size: 15px;
+}
+  
+.invoice-cell-h {
+    text-align: left;
+    font-family: "Inter", sans-serif;
+    background: #fff;
+}
+  
+.invoice-b{
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background: #fff;
+} 
+.invoice-row-b {
+    border-bottom: 1.5px solid #8E8E8E;
+}
+  
+.cell-b {
+    position: relative;
+    background: #fff;
+    display: flex;
+}
+  

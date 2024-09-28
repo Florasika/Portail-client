@@ -1,75 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.table-commande{
-    margin: 250px 270px; 
+.table-commande {
+    margin: 250px 270px; /* Centre le conteneur horizontalement */
     max-width: 700px;
+    max-height: 300px;
     position: fixed;
     border-radius: 8px;
-    overflow: hidden;
+    overflow-y: auto; /* Permet le défilement vertical */
+  overflow-x: hidden;
+  -ms-overflow-style: none;  /* Masquer la barre de défilement sur IE et Edge */
+  scrollbar-width: none;  /* Pour gérer le débordement */
     background: #fff;
-    border-collapse: collapse;
 }
 
-.table_root{
-    vertical-align: middle;
-    background: #fff;
-   
+.table_root {
+    display: none;
+    background: #fff;  
+  }
 
-}
-
-.header_table{
+.header_table {
     background-color: #fff;
 }
 
-.row_head{
+.row_head {
     border-bottom: 1.6px solid #555555;
 }
 
-.cell_head{
+
+
+.cell_head {
     font-weight: bold;
     background: #fff;
     color: #000;
     font-size: 12px;
+    padding: 10px; 
     font-family: "Inter", sans-serif;
 }
 
-.body{
+.body {
     width: 100%;
     height: auto;
     padding: 0;
     background: #fff;
-    
 }
 
-.row_body{
+.row_body {
     border-bottom: 1.6px solid #ccc;
+    background: #fff;
 }
 
-.cell_body{
+.cell_body {
     position: relative;
     background: #fff;
     display: flex;
+    padding: 10px; /* Ajoute du padding pour le contenu */
 }
 
-
-.cell_body button{
-    left: -50px;
+.cell_body button {
     position: relative;
     justify-content: center;
     align-items: center;
-    top: 5px;
 }
 
-.cell_body a:nth-child(1){
+.cell_body a:nth-child(1) {
     background: #000;
 }
-.livrer{
+
+.livrer {
     background: #18587A;
     width: 100px;
     height: auto;
@@ -83,22 +86,54 @@
     outline: none;
 }
 
-.cell_body  a{
+.cell_body a {
     margin-left: 110px;
     margin-top: -40px;
     border: none;
     justify-content: flex-end;
     display: flex;
-    position: fixed;
     cursor: pointer;
     padding: 5px;
     background: none;
 }
 
-.cell_body .delete-icon{
+.cell_body .delete-icon {
     font-size: 40px;
     color: #F80110;
     background: none;
-
 }
 
+/* Media Queries pour adaptabilité */
+@media (max-width: 768px) {
+    .table-commande {
+        margin: 20px; /* Réduit la marge sur les petits écrans */
+    }
+
+    .cell_body {
+        flex-direction: column; /* Empile les éléments sur les petits écrans */
+        align-items: center; /* Aligne les éléments à gauche */
+    }
+
+    .cell_body a {
+        margin-left: 0; /* Réinitialise la marge pour les petits écrans */
+        margin-top: 5px; /* Ajoute un petit espacement */
+    }
+
+    .livrer {
+        width: 80%; /* Ajuste la largeur du bouton sur les petits écrans */
+    }
+}
+
+@media (max-width: 480px) {
+    .table-commande {
+        margin: 10px; /* Réduit davantage la marge */
+    }
+
+    .cell_head {
+        font-size: 10px; /* Réduit la taille de police pour les petits écrans */
+    }
+
+    .cell_body .delete-icon {
+        font-size: 30px; /* Réduit la taille de l'icône de suppression */
+    }
+}

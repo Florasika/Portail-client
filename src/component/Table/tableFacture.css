@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,54 +8,64 @@
 
 .invoice-container {
     max-width: 700px;
-    margin: 230px 270px;
+    max-height: 400px;
+    margin: 230px 0 0 270px; /* Centre le conteneur horizontalement */
     border-radius: 8px;
     background: #fff;
-    border-collapse: collapse;
     position: fixed;
+    overflow-y: auto; /* Permet le défilement vertical */
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    -ms-overflow-style: none; /* Masquer la barre de défilement sur IE et Edge */
+    scrollbar-width: none;/* Ajoute une ombre pour le style */
 }
-  
+
 .invoice-table-root {
-    vertical-align: middle;
+    width: 100%; /* S'assure que le tableau prend toute la largeur */
     border-collapse: collapse;
     background: #fff;
+    overflow: hidden; /* Ajoute le défilement vertical */
+    max-height: 30vh;
 }
-  
+
 .invoice-header {
     background-color: #fff;
 }
-  
-.invoice-row-head  {
+
+.invoice-row-head {
     border-bottom: 1.5px solid #8E8E8E;
     font-weight: 400;
     font-size: 15px;
 }
-  
+
 .invoice-cell-head {
     text-align: left;
     font-family: "Inter", sans-serif;
     background: #e2e2e2;
 }
-  
-.invoice-body{
+
+.invoice-body {
     width: 100%;
-    height: auto;
     padding: 0;
     background: #fff;
-} 
+    display: block; /* Utiliser block pour permettre le défilement */
+    max-height: 30vh; /* Ajuste la hauteur pour le défilement */
+    overflow-y: auto; /* Ajuste la hauteur pour le défilement */
+}
+
 .invoice-row-body {
     border-bottom: 1.5px solid #8E8E8E;
 }
-  
+
 .cell-body {
     position: relative;
     background: #fff;
     display: flex;
+    flex-direction: column; /* Empile les éléments */
+    padding: 10px; /* Ajoute du padding pour le contenu */
+    
 }
-  
-.telecharger{
-    left: 20px;
-    position: relative;
+
+.telecharger {
     border: none;
     background: none;
     justify-content: center;
@@ -71,8 +81,34 @@
     background: none;
 }
 
-.download-icon:hover{
+.download-icon:hover {
     color: #000;
     background-color: #8E8E8E;
     border-radius: 50%;
-} 
+}
+
+/* Media Queries pour adaptabilité */
+@media (max-width: 768px) {
+    .invoice-container {
+        margin: 20px; /* Réduit la marge sur les petits écrans */
+    }
+
+    .invoice-table-root {
+        max-height: 50vh; /* Réduit la hauteur maximale pour les petits écrans */
+    }
+
+    .download-icon {
+        width: 30px; /* Réduit la taille de l'icône de téléchargement */
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .invoice-container {
+        margin: 10px; /* Réduit davantage la marge */
+    }
+
+    .invoice-row-head {
+        font-size: 14px; /* Réduit la taille de police pour les petits écrans */
+    }
+}

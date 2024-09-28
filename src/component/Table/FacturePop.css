@@ -3,6 +3,7 @@
     top: 0;
     left: 0;
     width: 100vw;
+    padding: 10px;
     height: 100vh;
     background: none;
     display: flex;
@@ -12,7 +13,7 @@
 
 .pop-up_content {
     background-color: #fff; 
-    opacity: 80%;
+    opacity: 90%;
     backdrop-filter: blur(4px); /* Ajoute un flou sur l'arrière-plan */
     padding: 10px;
     border-radius: 10px;

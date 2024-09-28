@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,10 +13,14 @@
     position: fixed;
     padding: 5px;
     background: #fff;
+    overflow-y: auto; /* Permet le défilement vertical */
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    -ms-overflow-style: none; /* Masquer la barre de défilement sur IE et Edge */
+    scrollbar-width: none;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-left: 750px;
-    margin-top: 20px;
+    left: 82%;
+    transform: translateX(-50%);
 }
 
 .header {
@@ -27,16 +31,18 @@
     background: none;
 }
 
-.header h2{
+.header h2 {
     font-size: 22px;
     font-family: "Inter", sans-serif;
     font-weight: bold;
     background: none;
 }
-.header a{
+
+.header a {
     background: none;
 }
-.header .delete-icon{
+
+.header .delete-icon {
     width: 25px;
     height: 25px;
     color: #FF0000;
@@ -47,7 +53,10 @@
 .historique-root {
     width: 100%;
     background: #fff;
+    
+    max-height: calc(82vh - 50px); /* Ajuste la hauteur pour le header */
 }
+
 
 .historique-header {
     background-color: #fff;
@@ -65,16 +74,17 @@
     background: #fff;
 }
 
-.historique-body{
+.historique-body {
     width: 100%;
     height: auto;
     padding: 0;
     background: #fff;
 }
 
-.historique-row-body{
+.historique-row-body {
     border-bottom: 1px solid #8E8E8E;
 }
+
 .historique-row-body:nth-of-type(odd) {
     background-color: #fff;
 }
@@ -83,6 +93,5 @@
     padding: 10px;
     text-align: left;
     display: flex;
+    flex-direction: column; /* Permet d'empiler les éléments */
 }
-
-

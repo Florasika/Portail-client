@@ -3,7 +3,7 @@ import TablePrix from './TablePrix';
 import './parametre.css';
 import axiosInstance from '../../../axios';
 
-const PrixPrevus = () => {
+const PrixPrevus =  ({ onClose, onSubmit }) => {
   const [marchandise, setMarchandise] = useState('');
   const [prixPrevu, setPrixPrevu] = useState('');
   const [prixTransport, setPrixTransport] = useState('');
@@ -97,7 +97,7 @@ const PrixPrevus = () => {
             onChange={handlePrixPrevuChange}
             className="form-control"
           />
-          <button className="btn-prix">Prix</button>
+           <button className="btn-prix">Prix</button>
         </div>
       </div>
 
@@ -111,10 +111,9 @@ const PrixPrevus = () => {
             onChange={handlePrixTransportChange} 
             className="form-control"
           />
-          <button className="btn-prix">Prix</button>
+           <button className="btn-prix">Prix</button>
         </div>
       </div>
-
       <button className="btn-submit" onClick={handleSubmit}>Enregistrer</button>
 
       {/* Afficher les messages d'erreur et de succès */}

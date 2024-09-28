@@ -1,14 +1,4 @@
 /*-------------------parametres---------------------*/
-/*body.light {
-  background-color: #fff;
-  color: #000;
-}
-
-body.dark {
-  background-color: #333;
-  color: #fff;
-}*/
-
 
 .profile-settings {
     font-family: Arial, sans-serif;
@@ -19,38 +9,6 @@ body.dark {
     padding: 20px;
     background: #f1f1f1;
   }
-  
-  .header-setting {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: none;
-    margin-bottom: 20px;
-    
-  }
-  
-  .header-setting h2 {
-    margin: 0 0 0 300px;
-    position: fixed;
-    font-size: 20px;
-    background: none;
-    padding-bottom: 5px;
-  }
-
-  .header-setting h3 {
-    margin: 146px 0 0 800px;
-    position: fixed;
-    font-size: 20px;
-    background: none;
-    padding-bottom: 5px;
-    
-  }
-
-  .header-setting h2.active, .header-setting h3.active {
-    border-bottom: 2px solid #8a3b6b;
-    transition: border-bottom 0.5s ease-in-out;
-  }
-  
 
   .save-btn {
     background-color: #b0324a;
@@ -62,16 +20,7 @@ body.dark {
     cursor: pointer;
   }
 
-  .price{
-    background-color: #b0324a;
-    color: white;
-    margin: 20px 20px 10px 1050px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    width: 120px;
-    cursor: pointer;
-  }
+  
 
   .content{
     background: none;
@@ -301,96 +250,8 @@ body.dark {
     background: none;
   }
 
-  /*-----------------------prix prevus-----------------------*/
-.prix-prevus-container {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  width: 400px; /* Largeur fixe */
-  height: 360px; /* Hauteur fixe */
-  background: #ffffff;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre plus douce */
-  position: absolute; /* Positionner au-dessus du tableau */
-  top: 80px; /* Espacement du haut */
-  left: 50%; /* Centrer horizontalement */
-  transform: translateX(-60%); /* Ajuster le centrage */
-  z-index: 10; /* S'assurer qu'il est au-dessus du tableau */
-}
+  
 
 
-.prix-prevus-container form{
-  background: none;
-}
-
-.prix-prevus-container .form-r{
-  background: none;
-}
-.prix-prevus-container .form-g {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: none;
-}
-
-.form-g select {
-  flex-grow: 1;
-  padding: 8px;
-  border: 1px solid #000;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  background: none;
-}
-
-.prix-prevus-container label {
-  font-size: 16px;
-  margin-bottom: 10px;
-  background: none;
-}
-
-.form-g .input-group {
-  display: flex;
-  align-items: center;
-  background: none;
-}
-
-.form-g input {
-  border: 1px solid #000;
-  margin-bottom: 20px;
-  background: none;
-}
-
-.form-control {
-  flex-grow: 1;
-  padding: 8px;
-  border: none;
-  border-radius: 5px;
-}
-
-.btn-prix {
-  background-color: #8a3b6b;
-  color: white;
-  margin-top: 40px;
-  border: none;
-  padding: 8px 12px;
-  width: 80px;
-  position: fixed;
-  margin-left: 279px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.btn-submit {
-  background-color: #FC624D;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 170px;
-  margin-top: 10px;
-  width: 50%;
-}
   
   

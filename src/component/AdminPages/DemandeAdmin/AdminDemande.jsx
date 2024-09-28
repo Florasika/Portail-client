@@ -120,12 +120,18 @@ const AdminDemande = () => {
                                     <MdDelete className="delete-icon" />
                                 </a>
                             </TableCell>
+
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+
+            {/* Affichage de la pop-up personnalisée */}
+            {isPopupOpen && (
+                <DemandDetails isOpen={isPopupOpen} onClose={closePopup} request={selectedRequest} />
+            )}
+
 };
 
 export default AdminDemande;

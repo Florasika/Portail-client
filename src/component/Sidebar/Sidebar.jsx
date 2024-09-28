@@ -69,7 +69,7 @@ const Sidebar = ({ role }) => {
                             className="profile-pic" 
                         />
                         <h3>KOSSI Marie</h3>
-                        <a href="/parametre" className="profile-item">
+                        <a href={role === 'admin' ? '/parametreAdmin' : '/parametreUser'} className="profile-item">
                             Paramètres
                             <IoSettingsOutline className="icon1" />
                         </a>

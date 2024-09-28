@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './parametre.css';
 import Profil from '../AdminParametre/Profil';
-import PrixPrevus from '../AdminParametre/PrixPrevus';
+import PrixPrevus from './PrixPrevus';
+import TablePrix from './TablePrix';
 
 const Parametres = () => {
   const [theme, setTheme] = useState('light');
@@ -9,8 +10,9 @@ const Parametres = () => {
   const [profileImage, setProfileImage] = useState('profile-image-url');
   const [activePage, setActivePage] = useState('profil');
   const fileInputRef = useRef(null);
+  const [data, setData] = useState([]);
+  const [isPrixPopupOpen, setIsPrixPopupOpen] = useState(false);
 
-  // Appliquer la classe de thème au niveau du body
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
@@ -26,14 +28,33 @@ const Parametres = () => {
     }
   };
 
-  const handleEditButtonClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
+  const handleClickOpen = () => {
+    setIsPrixPopupOpen(true);
   };
 
-  const handleDeleteButtonClick = () => {
-    setProfileImage(''); // Réinitialiser l'image de profil
+  const handleClose = () => {
+    setIsPrixPopupOpen(false);
+  };
+
+  const handleSubmitPrix = (marchandise, prixPrevu, prixTransport) => {
+    setData([...data, { type: marchandise, kg: '1kg', price: prixPrevu, transport: prixTransport }]);
+    setIsPrixPopupOpen(false);
+  };
+
+  const handleDelete = (index) => {
+    const newData = data.filter((_, i) => i !== index);
+    setData(newData);
+  };
+
+  const handleUpdate = (index) => {
+    const itemToUpdate = data[index];
+    const newType = prompt('Modifier le type de marchandise:', itemToUpdate.type);
+    const newPrice = prompt('Modifier le prix:', itemToUpdate.price);
+
+    const updatedData = data.map((item, i) =>
+      i === index ? { ...item, type: newType || item.type, price: newPrice || item.price } : item
+    );
+    setData(updatedData);
   };
 
   const handleClick = (page) => {
@@ -46,7 +67,7 @@ const Parametres = () => {
   };
 
   return (
-    <div className="profile-settings">
+    <div className="parametres-container">
       <div className="header-setting">
         <h2
           className={activePage === 'profil' ? 'active' : ''}
@@ -60,7 +81,20 @@ const Parametres = () => {
         >
           Prix prévus
         </h3>
-        <button className="save-btn">Enregistrer</button>
+        {activePage === 'prix-prevus' ? (
+          <>
+            <button className="price" onClick={handleClickOpen}>Entrer un prix</button>
+          {isPrixPopupOpen && (
+            <PrixPrevus
+              onClose={handleClose}
+              onSubmit={handleSubmitPrix}
+            />
+          )}
+      
+          </>
+        ) : (
+          <button className="save-btn">Enregistrer</button>
+        )}
       </div>
 
       <div className="content">
@@ -72,13 +106,17 @@ const Parametres = () => {
             setNotifications={setNotifications}
             profileImage={profileImage}
             handleFileChange={handleFileChange}
-            handleEditButtonClick={handleEditButtonClick}
-            fileInputRef={fileInputRef} // Assurez-vous que Profil reçoit fileInputRef si nécessaire
+            handleEditButtonClick={() => fileInputRef.current.click()}
+            fileInputRef={fileInputRef}
           />
         )}
 
         {activePage === 'prix-prevus' && (
-          <PrixPrevus />
+          <TablePrix
+          data={data}
+          onDelete={handleDelete}
+          onUpdate={handleUpdate}
+        />
         )}
       </div>
     </div>
