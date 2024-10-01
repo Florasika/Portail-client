@@ -23,12 +23,12 @@ const PrixPrevus =  ({ onClose, onSubmit }) => {
     const newTarif = {
       typeMarchandise: marchandise,
       montantParKg: parseFloat(prixPrevu),
-      prixParKm: parseFloat(prixTransport),
+      montantParKm: parseFloat(prixTransport),
     };
 
     try {
       // Utilisation d'Axios pour l'appel POST
-      const response = await axiosInstance.post('/admin/ajouter-tarif', newTarif);
+      const response = await axiosInstance.post('/admin/ajouter', newTarif);
 
       if (response.status === 201) {
         const result = response.data;

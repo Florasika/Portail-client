@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper } from '@mui/material';
 import './TablePrix.css';
+import axiosInstance from '../../../axios';
 
 const TablePrix = ({ data = [], onDelete, onUpdate }) => {
   return (
@@ -9,8 +10,8 @@ const TablePrix = ({ data = [], onDelete, onUpdate }) => {
         <TableHead className="table-head-prix">
           <TableRow className="row-head-prix">
             <TableCell className="cell-head-prix">Type de marchandise</TableCell>
-            <TableCell className="cell-head-prix">KG</TableCell>
             <TableCell className="cell-head-prix">Prix /KG</TableCell>
+            <TableCell className="cell-head-prix">Prix /Km</TableCell>
             <TableCell className="cell-head-prix">Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -18,9 +19,9 @@ const TablePrix = ({ data = [], onDelete, onUpdate }) => {
           {data.length > 0 ? (
             data.map((row, index) => (
               <TableRow key={index} className="table-row-prix">
-                <TableCell className="cell-prix">{row.type}</TableCell>
-                <TableCell className="cell-prix">{row.kg}</TableCell>
-                <TableCell className="cell-prix">{row.price}</TableCell>
+                <TableCell className="cell-prix">{row.typeMarchandise}</TableCell>
+                <TableCell className="cell-prix">{row.montantParKg}</TableCell>
+                <TableCell className="cell-prix">{row.montantParKm}</TableCell>
                 <TableCell className="cell-prix">
                   <button 
                     className="update-btn"
@@ -50,4 +51,32 @@ const TablePrix = ({ data = [], onDelete, onUpdate }) => {
   );
 };
 
-export default TablePrix;
+const App = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axiosInstance.get('admin/all-tarif')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the data!', error);
+      });
+  }, []);
+
+  const handleDelete = (index) => {
+    // Logique pour supprimer une ligne
+  };
+
+  const handleUpdate = (index) => {
+    // Logique pour mettre à jour une ligne
+  };
+
+  return (
+    <div>
+      <TablePrix data={data} onDelete={handleDelete} onUpdate={handleUpdate} />
+    </div>
+  );
+};
+
+export default App;

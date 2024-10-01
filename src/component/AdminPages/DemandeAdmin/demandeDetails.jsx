@@ -1,24 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './demandeDetails.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import axiosInstance from '../../../axios';
 
 const DemandDetails = ({ isOpen, onClose, request }) => {
     if (!isOpen) return null; // Ne rien afficher si la pop-up n'est pas ouverte
 
-    const { transport, livraison, type, poids, quantite, statut } = request || {};
+    const { id, transport, livraison, type, poids, quantite, statut } = request || {};
 
     const handleClosePopup = () => {
         onClose(); // Fermer la pop-up
     };
 
-    const handleApprove = () => {
-        console.log('Demande approuvée');
-        handleClosePopup();
+    const handleApprove = async () => {
+        try {
+            const response = await axiosInstance.put(`admin/approuver-demande/${id}`);
+            if (response.status === 200) {
+                console.log('Demande approuvée');
+                handleClosePopup();
+            } else {
+                console.error('Erreur lors de l\'approbation de la demande');
+            }
+        } catch (error) {
+            console.error('Erreur lors de l\'approbation de la demande', error);
+        }
     };
 
-    const handleReject = () => {
-        console.log('Demande rejetée');
-        handleClosePopup();
+    const handleReject = async () => {
+        try {
+            const response = await axiosInstance.put(`admin/rejeter-demande/${id}`);
+            if (response.status === 204) {
+                console.log('Demande rejetée');
+                handleClosePopup();
+            } else {
+                console.error('Erreur lors du rejet de la demande');
+            }
+        } catch (error) {
+            console.error('Erreur lors du rejet de la demande', error);
+        }
     };
 
     return (
@@ -53,17 +71,18 @@ const DemandDetails = ({ isOpen, onClose, request }) => {
                         </div>
                         <div className="detail-group">
                             <label>Statut:</label>
-                            <p>{statut === 'green' ? 'terminé' : 'en attente'}</p>
+                            <p>{statut === 'APPROUVEE' ? 'terminé' : 'en attente'}</p>
                         </div>
                     </div>
                 </div>
-                <div className="popup-actions">
-                    <button onClick={handleApprove} className="approve-btn">Approuver</button>
-                    <button onClick={handleReject} className="reject-btn">Rejeter</button>
-                </div>
+                {statut !== 'APPROUVEE' || statut !== 'REJETEE'  && (
+                    <div className="popup-actions">
+                        <button onClick={handleApprove} className="approve-btn">Approuver</button>
+                        <button onClick={handleReject} className="reject-btn">Rejeter</button>
+                    </div>
+                )}
             </div>
         </div>
-        
     );
 };
 

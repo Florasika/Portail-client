@@ -108,36 +108,31 @@ function Search({ type }) {
         const [lieuTransportLatitude, lieuTransportLongitude] = formData.lieuTransport.split(',').map(coord => parseFloat(coord.trim()));
         const [lieuLivraisonLatitude, lieuLivraisonLongitude] = formData.lieuLivraison.split(',').map(coord => parseFloat(coord.trim()));
     
-        // Créer les données de la demande
-        const demandeData = {
-            lieuTransport: {
-                latitude: lieuTransportLatitude,
-                longitude: lieuTransportLongitude
-            },
-            lieuLivraison: {
-                latitude: lieuLivraisonLatitude,
-                longitude: lieuLivraisonLongitude
-            },
+        // Créer le DTO pour la demande
+        const demandeTransportDTO = {
+            lieuTransportLatitude,
+            lieuTransportLongitude,
+            lieuLivraisonLatitude,
+            lieuLivraisonLongitude,
             typeMarchandise: formData.typeMarchandise,
             poids: formData.poids,
             descriptionMarchandise: formData.descriptionMarchandise,
             descPoids: formData.descPoids,
             descLieuLivraison: formData.descLieuLivraison,
             telLivreA: formData.livreA,
-            utilisateur: { id: localStorage.getItem('userId') } // Utilisateur connecté
+            utilisateurId: localStorage.getItem('userId') // Utilisateur connecté
         };
     
         try {
-            // Ajouter l'en-tête Authorization avec le token
-            const token = localStorage.getItem('token'); // Assure-toi que le token est stocké
+            const token = localStorage.getItem('token');
     
             const response = await axiosInstance.post(
-                `/user/add-demmande/${localStorage.getItem('userId')}`, 
-                demandeData, 
+                `/user/add-demmande`, // Notez que nous n'avons plus besoin de l'ID de l'utilisateur dans l'URL
+                demandeTransportDTO, 
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Ajouter le token à l'en-tête
-                        'Content-Type': 'application/json' // Assurer que le type de contenu est correct
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
                     }
                 }
             );
@@ -147,18 +142,16 @@ function Search({ type }) {
     
         } catch (error) {
             if (error.response) {
-                // Réponse reçue avec un code d'erreur (comme 403, 500, etc.)
                 console.error('Erreur lors de la création de la demande :', error.response.data);
                 alert(`Erreur: ${error.response.data.message || 'Erreur inconnue'}`);
             } else if (error.request) {
-                // La requête a été envoyée mais aucune réponse n'a été reçue
                 console.error('Aucune réponse reçue du serveur:', error.request);
             } else {
-                // Une erreur s'est produite lors de la configuration de la requête
                 console.error('Erreur lors de la configuration de la requête :', error.message);
             }
         }
     };
+    
     
     
 
@@ -175,7 +168,7 @@ function Search({ type }) {
             showElement = true;
             break;
         case 'factureC':
-            TableComponent = role === 'user' ? TableFactureC : TableFactureAdmin;
+            TableComponent = role === 'USER' ? TableFactureC : TableFactureAdmin;
             showElement = true;
             break;
         case 'utilisateur':
@@ -375,7 +368,7 @@ function Search({ type }) {
 
             
 
-                {type === 'factureC' && role ==='ADMIN' && showElement && !showDetails &&(
+                {type === 'factureC' && role ==='USER' && showElement && !showDetails &&(
                     <>
                     <div className="facture-container">
                         <h1>Listes des factures</h1>
@@ -384,7 +377,7 @@ function Search({ type }) {
                     
                 )}
 
-                {type === 'factureC' && role ==='admin' && showElement && !showDetails &&(
+                {type === 'factureC' && role ==='ADMIN' && showElement && !showDetails &&(
                     <>
                     <div className="facture-container">
                         <h1>Listes des factures émises</h1>

@@ -24,7 +24,7 @@ const Sidebar = ({ role }) => {
         localStorage.removeItem('role');
         
         // Rediriger vers la page de connexion
-        navigate('/');
+        navigate('/login');
     };
 
     return (
@@ -69,11 +69,11 @@ const Sidebar = ({ role }) => {
                             className="profile-pic" 
                         />
                         <h3>KOSSI Marie</h3>
-                        <a href={role === 'admin' ? '/parametreAdmin' : '/parametreUser'} className="profile-item">
+                        <a href={role === 'ADMIN' ? '/parametreAdmin' : '/parametreUser'} className="profile-item">
                             Paramètres
                             <IoSettingsOutline className="icon1" />
                         </a>
-                        <a href="#" className="profile-item" onClick={handleLogout}>
+                        <a href="/login" className="profile-item" onClick={handleLogout}>
                             Déconnexion
                             <AiOutlineLogout className="icon1" />
                         </a>
