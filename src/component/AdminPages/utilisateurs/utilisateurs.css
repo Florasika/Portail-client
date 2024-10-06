@@ -59,33 +59,20 @@
 }
 
 
-.actions{
-    background: #FCA7A7;
-    width: 100px;
-    height: auto;
-    border: none;
-    border-radius: 15px;
-    font-size: 15px;
-    padding: 5px;
-    position: fixed;
-    margin-left: -50px;
-    color: #000;
-    font-family: "Inter", sans-serif;
-    cursor: pointer;
-    outline: none;
-}
 
-.cell-user-body a{
+.md{
     display: flex;
     justify-content: flex-end; /* Place l'icône à droite */
     align-items: center;
     border: none;
     padding: 5px;
+    border: none;
     position: relative; 
-    margin-top: -15px;
+    margin-top: 2px;
     background: none;
     cursor: pointer;
-    left: -50px; /* Ajuste l'espace entre le bouton et l'icône */
+    margin-right: -50px;
+    margin-left: 0px; /* Ajuste l'espace entre le bouton et l'icône */
 }
 
 .cell-user-body .delete-icon{

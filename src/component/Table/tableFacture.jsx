@@ -5,6 +5,33 @@ import './tableFacture.css';
 import InvoicePopup from './FacturePop'; 
 import axiosInstance from '../../axios'; 
 
+const formatDate = (dateArray) => {
+    if (!dateArray) return 'Pas de date'; // Handle null dates
+
+    if (Array.isArray(dateArray) && dateArray.length >= 6) {
+        const [year, month, day, hours, minutes, seconds, nanoseconds] = dateArray;
+
+        // Create a Date object using the array values
+        const date = new Date(year, month - 1, day, hours, minutes, seconds, Math.floor(nanoseconds / 1000000));
+
+        // Check if the date is valid
+        if (isNaN(date.getTime())) {
+            return 'Date invalide'; // Handle invalid dates
+        }
+
+        // Format the date and time
+        return date.toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        }) + ' ' + date.toLocaleTimeString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+    }
+
+    return 'Date invalide'; // Handle unexpected cases
+};
 const TableFactureC = () => {
     const [factures, setFactures] = useState([]); // État pour stocker les factures
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -36,7 +63,7 @@ const TableFactureC = () => {
 
         const fetchFactures = async () => {
             try {
-                const response = await axiosInstance.get(`/user/factureby-utilisateur/${utilisateurId}`);
+                const response = await axiosInstance.get(`/user/factureparutilisateur/${utilisateurId}`);
                 setFactures(response.data);
                 setLoading(false); 
             } catch (err) {
@@ -74,8 +101,8 @@ const TableFactureC = () => {
                         {factures.map((facture, index) => (
                             <TableRow key={index} className="invoice-row-body">
                                 <TableCell className="cell-body">{facture.descriptionMarchandise}</TableCell>
-                                <TableCell className="cell-body">{facture.montantTotal} FCFA</TableCell>
-                                <TableCell className="cell-body">{new Date(facture.dateEmission).toLocaleDateString()}</TableCell>
+                                <TableCell className="cell-body">{facture.montantTotale} FCFA</TableCell>
+                                <TableCell className="cell-body">{formatDate(facture.soumisLe)}</TableCell>
                                 <TableCell className="cell-body">
                                     <button className='telecharger' onClick={() => openPopup(facture)}>
                                         <RiDownloadCloud2Line className="download-icon" />

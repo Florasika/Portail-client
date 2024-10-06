@@ -83,10 +83,20 @@
 .table-cell-body button {
     position: relative;
     justify-content: center;
-    align-items: center;
-    left: 100px; 
+    align-items: center; 
     display: flex;
-    margin-top: -20px;
+    margin-top: 10px;
+}
+
+.table-cell-body a{
+    background: none;
+    border: none;
+    position: relative;
+    justify-content: center;
+    align-items: center; 
+    display: flex;
+    margin-left: 110px;
+    margin-top: -25px;
 }
 
 .detail {
@@ -100,6 +110,14 @@
     font-family: "Inter", sans-serif;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.delete{
+    font-size: 20px;
+    color: #e40404;
+    background: none;
+    border: none;
+    
 }
 
 

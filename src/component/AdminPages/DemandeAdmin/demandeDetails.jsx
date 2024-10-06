@@ -1,15 +1,17 @@
 import React from 'react';
 import './demandeDetails.css';
+import { IoClose } from "react-icons/io5";
 import axiosInstance from '../../../axios';
 
 const DemandDetails = ({ isOpen, onClose, request }) => {
     if (!isOpen) return null; // Ne rien afficher si la pop-up n'est pas ouverte
 
-    const { id, transport, livraison, type, poids, quantite, statut } = request || {};
+    const { id, demanderPar, descriptionLieuxLivraison, typeMarchandise, poids, statut } = request || {};
 
     const handleClosePopup = () => {
         onClose(); // Fermer la pop-up
     };
+    console.log('Statut:', statut);
 
     const handleApprove = async () => {
         try {
@@ -42,22 +44,23 @@ const DemandDetails = ({ isOpen, onClose, request }) => {
     return (
         <div className="popupDetails">
             <div className="popup-content">
+            <button className="close-btn" onClick={onClose}><IoClose className='close-icon'/></button>
                 <h2>Détails de la demande</h2>
                 <div className="detail-container">
                     <div className="detail-row">
                         <div className="detail-group">
-                            <label>Transport:</label>
-                            <p>{transport}</p>
+                            <label>Transport de :</label>
+                            <p>{demanderPar}</p>
                         </div>
                         <div className="detail-group">
-                            <label>Livraison:</label>
-                            <p>{livraison}</p>
+                            <label>Lieu de Livraison:</label>
+                            <p>{descriptionLieuxLivraison}</p>
                         </div>
                     </div>
                     <div className="detail-row">
                         <div className="detail-group">
                             <label>Type de marchandise:</label>
-                            <p>{type}</p>
+                            <p>{typeMarchandise}</p>
                         </div>
                         <div className="detail-group">
                             <label>Poids:</label>
@@ -65,22 +68,20 @@ const DemandDetails = ({ isOpen, onClose, request }) => {
                         </div>
                     </div>
                     <div className="detail-row">
-                        <div className="detail-group">
-                            <label>Quantité:</label>
-                            <p>{quantite}</p>
-                        </div>
+                        
                         <div className="detail-group">
                             <label>Statut:</label>
-                            <p>{statut === 'APPROUVEE' ? 'terminé' : 'en attente'}</p>
+                            <p>{statut}</p>
                         </div>
                     </div>
                 </div>
-                {statut !== 'APPROUVEE' || statut !== 'REJETEE'  && (
+                {statut !== 'APPROUVEE' && statut !== 'REJETEE' && (
                     <div className="popup-actions">
                         <button onClick={handleApprove} className="approve-btn">Approuver</button>
                         <button onClick={handleReject} className="reject-btn">Rejeter</button>
                     </div>
                 )}
+
             </div>
         </div>
     );

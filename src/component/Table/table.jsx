@@ -123,14 +123,14 @@ const TableDemande = () => {
                                     <TableCell className="table-cell-body">
                                         <span className={`status-icon`}>{row.statut.toLowerCase()}</span>
                                     </TableCell>
-                                    {/* <TableCell className="icon-button">
-                                        <Button onClick={() => handleEdit(row.id)} variant="contained" color="primary" startIcon={<FaEdit />}>
-                                            Éditer
-                                        </Button>
-                                        <Button onClick={() => handleDelete(row.id)} variant="contained" color="secondary" startIcon={<MdDelete />}>
-                                            Supprimer
-                                        </Button>
-                                    </TableCell> */}
+                                     <TableCell className="icon-button">
+                                        <a onClick={() => handleEdit(row.id)} variant="contained" color="primary" startIcon={<FaEdit className='edit-icon'/>}>
+                                            
+                                        </a>
+                                        <a onClick={() => handleDelete(row.id)} variant="contained" color="secondary" startIcon={<MdDelete className='delete-icon'/>}>
+                                            
+                                        </a>
+                                    </TableCell> 
                                 </TableRow>
                             ))
                         )}

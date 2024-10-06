@@ -199,15 +199,14 @@ const AdminDemande = () => {
                                     <TableCell className="table-cell-body">{demande.typeMarchandise}</TableCell>
                                     <TableCell className="table-cell-body">{demande.descriptionMarchandise}</TableCell>
                                     <TableCell className="table-cell-body">{demande.poids} KG</TableCell>
-                                    <TableCell className="table-cell-body">{demande.demandePar}</TableCell>
+                                    <TableCell className="table-cell-body">{demande.demanderPar}</TableCell>
                                     <TableCell className="table-cell-body">
                                         <span className={`status-icon ${demande.statut === 'APPROUVEE' ? 'green' : 'red'}`}>
-                                            {demande.statut}
                                         </span>
                                     </TableCell>
                                     <TableCell className="table-cell-body">
                                         <button className="detail" onClick={() => openPopup(demande)}>Détails</button>
-                                        <button className="delete" onClick={() => handleDelete(demande.id)}><MdDelete /></button>
+                                        <a  onClick={() => handleDelete(demande.id)}><MdDelete className="delete"/></a>
                                     </TableCell>
                                 </TableRow>
                             ))

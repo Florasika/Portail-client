@@ -100,7 +100,7 @@
 .icon-button .edit-icon,
 .icon-button .delete-icon {
     font-size: 25px;
-    background: #fff;
+    background: none;
     border: none;
 }
 

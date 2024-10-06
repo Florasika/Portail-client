@@ -371,7 +371,7 @@ body.dark {
 .btn-prix {
   background-color: #8a3b6b;
   color: white;
-  margin-top: 40px;
+  margin-top: -20px;
   border: none;
   padding: 8px 12px;
   width: 80px;

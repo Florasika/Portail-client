@@ -56,12 +56,9 @@ const TableUtilisateurs = () => {
                             <TableCell className='cell-user-body'>{user.etat ? 'actif' : 'inactif'}</TableCell>
                             <TableCell className='cell-user-body'>{user.userRole}</TableCell>
                             <TableCell className='cell-user-body'>
-                                <button className="actions">
-                                    {user.etat ? 'Bloquer' : 'Débloquer'}
-                                </button>
-                                <IconButton onClick={() => handleDelete(user.id)}>
+                                <button className="md" onClick={() => handleDelete(user.id)}>
                                     <MdDelete className='delete-icon'/>
-                                </IconButton>
+                                </button>
                             </TableCell>
                         </TableRow>
                     ))}
