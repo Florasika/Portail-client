@@ -8,7 +8,7 @@
 
 .menuM{
     margin-left: 250px;
-    width: 1255px;
+    width: 1280px;
     position: fixed;
     top: 1px;
     height: 70px;
@@ -37,7 +37,7 @@
 }
 
 .cloche{
-    margin: 10px 0 0 1150px;
+    margin: 10px 0 0 1200px;
     position: fixed;
     color: #000;
     background: none;
