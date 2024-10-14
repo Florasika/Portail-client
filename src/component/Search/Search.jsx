@@ -152,22 +152,7 @@ function Search({ type }) {
         }
     };
 
-    const [selectedOption, setSelectedOption] = useState('option1'); // Par défaut, afficher les demandes approuvées
-    const [rows, setRows] = useState([]); // Supposons que les données de demandes soient ici
-
-    const handleSelectChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
-
-    // Filtrer les lignes en fonction de l'option sélectionnée
-    const filteredRows = rows.filter((row) => {
-        if (selectedOption === 'option1') {
-            return row.statut === 'approuvé'; // Filtrer les demandes approuvées
-        } else if (selectedOption === 'option2') {
-            return row.statut === 'rejeté'; // Filtrer les demandes rejetées
-        }
-        return true; // Par défaut, afficher toutes les demandes
-    });
+  
     
     
     
