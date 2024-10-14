@@ -207,9 +207,7 @@ function Search({ type }) {
                                 <span className="status-text">En attente</span>
                             </div>
                         </div>
-                        <button className='search-button'>
-                            Approuver
-                        </button>
+                        
                         <button className='search-button1' onClick={() => setIsOpen(true)}>
                             Créer une demande
                         </button>
@@ -240,106 +238,7 @@ function Search({ type }) {
                     </>
                 )}
 
-                {type === 'commande' && role === 'USER' && showElement &&(
-                    <>
-                    <div className="commande_container">
-                        <h1>Listes des commandes</h1>
-
-                        <button className="reload" onClick={() => window.location.reload()}>
-                            <TfiReload  className="reload_icon"/>
-                            <h2>Actualiser</h2>
-                        </button>
-                    </div>
-
-                    <div className="notif-list">
-                        <h1>Notifications en temps réel</h1>
-                        <div className="notif-item">
-                            <div className="notif-left">
-                                <div className="notif-icon"></div>
-                            </div>
-                            <div className="notif-content">
-                            <div className="notif-header">
-                                <span className="notif-title">Marchandise</span>
-                                <span className="time">2min</span>
-                            </div>
-                            <div className="notif-body">
-                                Lorem ipsum dolor sit amet consectetur. Nulla commodo sit tellus ipsum sem eu eu aenean.
-                            </div>
-                            <div className="notif-footer">
-                                <a href="#" className="notif-link">En savoir plus</a>
-                            </div>
-                            </div>
-                            <div className="notif-options">
-                            <SlOptions className='option'/>
-                            </div>
-                        </div>
-
-                        <div className="notif-item">
-                            <div className="notif-left">
-                                <div className="notif-icon"></div>
-                            </div>
-                            <div className="notif-content">
-                            <div className="notif-header">
-                                <span className="notif-title">Marchandise</span>
-                                <span className="time">2min</span>
-                            </div>
-                            <div className="notif-body">
-                                Lorem ipsum dolor sit amet consectetur. Nulla commodo sit tellus ipsum sem eu eu aenean.
-                            </div>
-                            <div className="notif-footer">
-                                <a href="#" className="notif-link">En savoir plus</a>
-                            </div>
-                            </div>
-                            <div className="notif-options">
-                            <SlOptions className='option'/>
-                            </div>
-                        </div>
-
-                        <div className="notif-item">
-                            <div className="notif-left">
-                                <div className="notif-icon"></div>
-                            </div>
-                            <div className="notif-content">
-                            <div className="notif-header">
-                                <span className="notif-title">Marchandise</span>
-                                <span className="time">2min</span>
-                            </div>
-                            <div className="notif-body">
-                                Lorem ipsum dolor sit amet consectetur. Nulla commodo sit tellus ipsum sem eu eu aenean.
-                            </div>
-                            <div className="notif-footer">
-                                <a href="#" className="notif-link">En savoir plus</a>
-                            </div>
-                            </div>
-                            <div className="notif-options">
-                            <SlOptions className='option'/>
-                            </div>
-                        </div>
-                        <div className="notif-item">
-                            <div className="notif-left">
-                                <div className="notif-icon"></div>
-                            </div>
-                            <div className="notif-content">
-                            <div className="notif-header">
-                                <span className="notif-title">Marchandise</span>
-                                <span className="time">2min</span>
-                            </div>
-                            <div className="notif-body">
-                                Lorem ipsum dolor sit amet consectetur. Nulla commodo sit tellus ipsum sem eu eu aenean.
-                            </div>
-                            <div className="notif-footer">
-                                <a href="#" className="notif-link">En savoir plus</a>
-                            </div>
-                            </div>
-                            <div className="notif-options">
-                            <SlOptions className='option'/>
-                            </div>
-                        </div>
-
-                        {/* Répéter les sections comme ci-dessus autant de fois que nécessaire */}
-                    </div>
-                    </>
-                )}
+                
 
                 {type === 'commande' && role === 'ADMIN' && showElement && !showDetails && (
                     <>
@@ -373,7 +272,7 @@ function Search({ type }) {
                     <div className="facture-container">
                         <h1>Listes des factures</h1>
                     </div>
-                    <TableHistorique /></>
+                   {/*<TableHistorique />*/}</> 
                     
                 )}
 

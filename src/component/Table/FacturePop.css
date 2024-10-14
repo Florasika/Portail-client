@@ -61,6 +61,14 @@
     margin-bottom: 20px;
 }
 
+.invoice-header2 h2{
+    background: none;
+}
+.invoice-header2 p{
+    background: none;
+    margin-top: 50px;
+}
+
 
 .header-section2{
     display: flex;
@@ -88,6 +96,12 @@
     background: none;
 }
 .header-section p{
+    font-size: 15px;
+    color: #000;
+    margin-top: 10px;
+    background: none;
+}
+.header-section strong{
     font-size: 18px;
     color: #000;
     margin-top: 10px;
@@ -167,14 +181,14 @@
     text-align: right;
     width: 250px;
     color: black;
-    margin: -70px 0 0 250px;
+    margin: -50px 0 0 250px;
 }
 
 .download-btn2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px auto; /* Centrer horizontalement */
+    margin: 10px auto; /* Centrer horizontalement */
     padding: 10px 20px;
     background-color: #f00;
     color: white;

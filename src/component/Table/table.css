@@ -95,23 +95,20 @@
 
 .icon-button a{
     background: none;
-}
-
-.icon-button .edit-icon,
-.icon-button .delete-icon {
-    font-size: 25px;
-    background: none;
     border: none;
 }
 
+
 .icon-button .edit-icon {
-    color: #00AF12;
+    color: #000;
     margin-left: -60px;
+    font-size: 25px;
     background: none; /* Ajustement de la marge pour aligner correctement */
 }
 
 .icon-button .delete-icon {
     color: #F80110;
+    font-size: 25px;
     margin-left: 40px;
     background: none; /* Ajustement de la marge pour aligner correctement */
 }

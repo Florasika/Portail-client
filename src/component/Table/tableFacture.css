@@ -7,7 +7,7 @@
 }
 
 .invoice-container {
-    max-width: 700px;
+    max-width: 1200px;
     max-height: 400px;
     margin: 230px 0 0 270px; /* Centre le conteneur horizontalement */
     border-radius: 8px;

@@ -35,8 +35,35 @@ const InvoicePopup = ({ isOpen, onClose, invoice }) => {
     if (!isOpen || !invoice) return null;
 
     const handleDownloadPDF = () => {
-        // ... (code inchangé pour le téléchargement PDF)
+        const downloadBtn = document.querySelector('.download-btn2');
+        const closeBtn = document.querySelector('.close-btn');
+        
+        if (downloadBtn) downloadBtn.style.display = 'none';
+        if (closeBtn) closeBtn.style.display = 'none';
+    
+        html2canvas(document.querySelector('#invoiceContent'), { scale: 2 }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF({
+                orientation: 'portrait', // ou 'landscape' si vous préférez
+                unit: 'mm',
+                format: [210, 297] // Taille A4 en mm
+            });
+    
+            // Ajustez les dimensions de l'image ajoutée si nécessaire
+            pdf.addImage(imgData, 'PNG', 0, 0, 210, canvas.height * 210 / canvas.width);
+            pdf.save('facture.pdf');
+    
+            if (downloadBtn) downloadBtn.style.display = 'block';
+            if (closeBtn) closeBtn.style.display = 'block';
+        });
     };
+    
+
+    const paymentInfo = invoice.paymentInfo || {}
+    const items = Array.isArray(invoice.items) ? invoice.items : [];
+
+    console.log('Invoice data:', invoice);
+    console.log('Payment info:', paymentInfo);
 
     // Vérification et formatage des valeurs
     const soumisLe = invoice.soumisLe ? new Date(invoice.soumisLe).toLocaleDateString('fr-FR') : 'Date non disponible';
@@ -57,7 +84,7 @@ const InvoicePopup = ({ isOpen, onClose, invoice }) => {
                     <p>Date d'émission : {formatDate(invoice.soumisLe)}</p>
                 </div>
 
-                <div className="invoice-details">
+                <div className="header-section">
                     <p><strong>Facture de :</strong> {invoice.factureDe || 'N/A'}</p>
                     <p><strong>Numéro de Marchandise :</strong> {invoice.numeroMarchandise || 'N/A'}</p>
                     <p><strong>Type de Marchandise :</strong> {invoice.typeMarchandise || 'N/A'}</p>
@@ -90,6 +117,13 @@ const InvoicePopup = ({ isOpen, onClose, invoice }) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+
+                <div className="invoice-summary2">
+                    <h2>Information de paiement</h2>
+                    <p>Tmoney: {paymentInfo.tmoney || 'Non spécifié'}</p>
+                    <p>Flooz: {paymentInfo.flooz  ||'Non spécifié'}</p>
+                    <p>Numéro de compte bancaire: {paymentInfo.bank  ||'Non spécifié'}</p>
+                </div>
 
                 <div className="invoice-total2">
                     <h3>Total : {montantTotale} FCFA</h3>
