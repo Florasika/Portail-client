@@ -63,8 +63,8 @@
     position: relative;
     background: none;
     justify-content: space-between;
-    margin: 30px 72px 10px -12px;
-    gap: 5px; /* Espacement entre les deux inputs */
+    margin: 30px 72px 50px -12px;
+    gap: 20px; /* Espacement entre les deux inputs */
 }
 
 .wrapper .input {
@@ -72,14 +72,37 @@
     width: 85%;
     height: 30px;
     background: none;
-    margin: 30px 0 ;
+    margin: 30px 0;
     left: 30px;
     border-bottom: 2px solid #000;
 }
 
-.wrapper .input-row .input {
-    width: 30%; /* Réduire la largeur des inputs pour qu'ils tiennent côte à côte */
-    margin: 10px; /* Supprimer le margin vertical pour les inputs côte à côte */
+ .input-row .iput {
+    width: 180px;
+    height: 100%;
+    background: transparent;
+    position: relative;
+    border-bottom: 2px solid #000;
+    color: #000;
+    font-size: 13px;
+    margin-right: -18px;
+    margin-left: 42px;
+    outline: none;
+    padding: 0 30px 0 10px;/* Supprimer le margin vertical pour les inputs côte à côte */
+}
+
+ .input-row .iput input{
+    width: 180px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: #000;
+    font-size: 13px;
+    margin-bottom: 10px;
+    outline: none;
+    border-radius: 20px;
+    margin-left: -10px;
+    padding: 0 25px 0 10px;
 }
 
 .wrapper .input input {
@@ -95,6 +118,15 @@
     margin: 0;
 }
 
+.iput label {
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    background: none;
+    font-size: 14px;
+    color: #000;
+}
+
 .input label {
     position: absolute;
     top: -15px;
@@ -107,6 +139,13 @@
     position: absolute;
     right: 10px;
     top: 5px;
+    transform: translateY(35%);
+}
+.iput .iconn {
+    position: absolute;
+    font-size: 20px;
+    right: 5px;
+    top: -3px;
     transform: translateY(35%);
 }
 

@@ -78,7 +78,7 @@ const SignUp = () => {
                         <h4>Veuillez remplir ces informations pour vous inscrire sur la plateforme</h4> 
 
                         <div className="input-row"> 
-                            <div className="input">  
+                            <div className="iput">  
                                 <input   
                                     type="text"   
                                     required   
@@ -86,10 +86,10 @@ const SignUp = () => {
                                     onChange={(e) => setNom(e.target.value)}  
                                 />  
                                 <label>Nom</label>  
-                                <PiIdentificationCardLight className='icon' />  
+                                <PiIdentificationCardLight className='iconn' />  
                             </div> 
 
-                            <div className="input">  
+                            <div className="iput">  
                                 <input   
                                     type="text"   
                                     required   
@@ -97,7 +97,7 @@ const SignUp = () => {
                                     onChange={(e) => setPrenom(e.target.value)}  
                                 />  
                                 <label>Prénom</label>  
-                                <PiIdentificationCardLight className='icon' />  
+                                <PiIdentificationCardLight className='iconn' />  
                             </div> 
                         </div>
 
