@@ -86,7 +86,7 @@ const App = () => {
       cancelButtonText: 'Annuler'
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosInstance.delete(`/supprimertarif/${tarifId}`)
+        axiosInstance.delete(`admin/supprimertarif/${tarifId}`)
           .then(response => {
             if (response.status === 204) {
               setData(data.filter((_, i) => i !== index));
@@ -135,7 +135,7 @@ const App = () => {
         };
 
         // Envoyer la requête PUT pour mettre à jour le tarif
-        axiosInstance.put(`/modifiertarif/${row.id}`, updatedTarif)
+        axiosInstance.put(`admin/modifiertarif/${row.id}`, updatedTarif)
           .then(response => {
             const newData = [...data];
             newData[index] = response.data; // Mettre à jour la ligne dans les données locales

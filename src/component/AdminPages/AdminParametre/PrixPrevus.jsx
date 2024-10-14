@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TablePrix from './TablePrix';
 import './parametre.css';
 import axiosInstance from '../../../axios';
+import Swal from 'sweetalert2'; // Importer SweetAlert2
 
 const PrixPrevus =  ({ onClose, onSubmit }) => {
   const [marchandise, setMarchandise] = useState('');
@@ -9,17 +10,12 @@ const PrixPrevus =  ({ onClose, onSubmit }) => {
   const [prixTransport, setPrixTransport] = useState('');
   const [showTable, setShowTable] = useState(false);
   const [data, setData] = useState([]);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
   const handleMarchandiseChange = (e) => setMarchandise(e.target.value);
   const handlePrixPrevuChange = (e) => setPrixPrevu(e.target.value);
   const handlePrixTransportChange = (e) => setPrixTransport(e.target.value);
 
   const handleSubmit = async () => {
-    setError(''); // Réinitialiser les erreurs
-    setSuccess(''); // Réinitialiser les messages de succès
-
     const newTarif = {
       typeMarchandise: marchandise,
       montantParKg: parseFloat(prixPrevu),
@@ -38,12 +34,33 @@ const PrixPrevus =  ({ onClose, onSubmit }) => {
           price: result.montantParKg,
         }]);
         setShowTable(true); // Afficher le tableau après avoir ajouté les données
-        setSuccess('Le tarif a été ajouté avec succès.');
-      } else {
-        setError("Erreur lors de l'ajout du tarif.");
+
+        // Afficher une alerte de succès avec SweetAlert2
+        Swal.fire({
+          icon: 'success',
+          title: 'Succès',
+          text: 'Le tarif a été ajouté avec succès.',
+          confirmButtonText: 'OK',
+        });
       }
     } catch (error) {
-      setError("Erreur de communication avec l'API.");
+      if (error.response && error.response.status === 409) {
+        // Gestion spécifique du duplicata de marchandise
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur de duplication',
+          text: error.response.data, // Afficher le message personnalisé renvoyé par le backend
+          confirmButtonText: 'OK',
+        });
+      } else {
+        // Gestion d'erreurs générales
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: "Une erreur s'est produite lors de l'ajout du tarif.",
+          confirmButtonText: 'OK',
+        });
+      }
     }
   };
 
@@ -114,11 +131,8 @@ const PrixPrevus =  ({ onClose, onSubmit }) => {
            <button className="btn-prix">Prix</button>
         </div>
       </div>
-      <button className="btn-submit" onClick={handleSubmit}>Enregistrer</button>
 
-      {/* Afficher les messages d'erreur et de succès */}
-      {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
-      {success && <p className="success-message" style={{ color: 'green' }}>{success}</p>}
+      <button className="btn-submit" onClick={handleSubmit}>Enregistrer</button>
     </div>
   );
 };
