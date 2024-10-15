@@ -30,7 +30,7 @@ const Sidebar = ({ role }) => {
     return (
         <div>
             <div className="container">
-                <div className="sidebar-logo">LOGO</div>
+                <div className="sidebar-logo"><img src="https://static.vecteezy.com/ti/vecteur-libre/t2/46922746-transport-symbole-logo-conception-illustration-vectoriel.jpg"/></div>
                 
                 <div className="sidebar-menu">
                     <a href="/demande" className="item">
