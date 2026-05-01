@@ -48,7 +48,7 @@ const FactureDetails = ({ isOpen, onClose, request }) => {
                             <p>{numeroMarchandise}</p>
                         </div>
                         <div className="detail-group">
-                            <label>Montant:</label>
+                            <label>Montant (Fcfa):</label>
                             <p>{montantTotale}</p>
                         </div>
                     </div>

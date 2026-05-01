@@ -137,7 +137,7 @@ const AdminCommande = () => {
                                 <TableCell className='cell-head'>Numero Marchandise</TableCell>
                                 <TableCell className='cell-head'>Description Marchandise</TableCell>
                                 <TableCell className='cell-head'>Date de Commande</TableCell>
-                                <TableCell className='cell-head'>Date de livraison</TableCell>
+                                <TableCell className='cell-head'>Date de Traitement</TableCell>
                                 <TableCell className='cell-head'>Statut</TableCell>
                             </TableRow>
                         </TableHead>

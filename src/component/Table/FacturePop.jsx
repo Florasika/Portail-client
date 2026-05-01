@@ -96,7 +96,7 @@ const InvoicePopup = ({ isOpen, onClose, invoice }) => {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Libellé</TableCell>
-                                <TableCell align="right">Montant par unité</TableCell>
+                                <TableCell align="right">Montant par unité (Fcfa)</TableCell>
                                 <TableCell align="right">Quantité</TableCell>
                                 <TableCell align="right">Total</TableCell>
                             </TableRow>

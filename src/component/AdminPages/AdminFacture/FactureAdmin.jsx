@@ -69,7 +69,7 @@ const TableFactureAdmin = () => {
                     <TableHead className="invoice-h">
                         <TableRow className="invoice-row-h">
                             <TableCell className="invoice-cell-h">Marchandise</TableCell>
-                            <TableCell className="invoice-cell-h">Montant</TableCell>
+                            <TableCell className="invoice-cell-h">Montant (Fcfa)</TableCell>
                             <TableCell className="invoice-cell-h">Date d'Emission</TableCell>
                             <TableCell className="invoice-cell-h">Nom du client</TableCell>
                             <TableCell className="invoice-cell-h">Actions</TableCell>

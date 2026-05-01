@@ -26,7 +26,7 @@ const TableHistorique = () => {
                     <TableRow className="historique-row-head">
                         <TableCell className="historique-cell-head">Facture</TableCell>
                         <TableCell className="historique-cell-head">Date Paiement</TableCell>
-                        <TableCell className="historique-cell-head">Montant payé</TableCell>
+                        <TableCell className="historique-cell-head">Montant payé (Fcfa)</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody className="historique-body">

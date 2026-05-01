@@ -11,8 +11,8 @@ const TablePrix = ({ data = [], onDelete, onUpdate }) => {
         <TableHead className="table-head-prix">
           <TableRow className="row-head-prix">
             <TableCell className="cell-head-prix">Type de marchandise</TableCell>
-            <TableCell className="cell-head-prix">Prix /KG</TableCell>
-            <TableCell className="cell-head-prix">Prix /Km</TableCell>
+            <TableCell className="cell-head-prix">Prix (Fcfa) /KG</TableCell>
+            <TableCell className="cell-head-prix">Prix (Fcfa) /Km</TableCell>
             <TableCell className="cell-head-prix">Actions</TableCell>
           </TableRow>
         </TableHead>

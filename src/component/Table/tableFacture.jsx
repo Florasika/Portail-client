@@ -91,7 +91,7 @@ const TableFactureC = () => {
                     <TableHead className="invoice-header">
                         <TableRow className="invoice-row-head">
                             <TableCell className="invoice-cell-head">Marchandise</TableCell>
-                            <TableCell className="invoice-cell-head">Montant Total</TableCell>
+                            <TableCell className="invoice-cell-head">Montant Total (Fcfa)</TableCell>
                             <TableCell className="invoice-cell-head">Date d'émission</TableCell>
                             <TableCell className="invoice-cell-head">Télécharger</TableCell>
                         </TableRow>
